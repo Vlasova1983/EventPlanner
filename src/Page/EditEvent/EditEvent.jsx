@@ -1,7 +1,7 @@
 const EditEvent=()=>{
     return(
         <>
-            <h2>Edit event</h2>
+            <h2>Страница изменения события</h2>
         </>        
     )
 }
