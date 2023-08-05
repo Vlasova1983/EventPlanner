@@ -1,0 +1,39 @@
+.sortButton{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    color:rgba(63, 63, 63, 1);
+ 
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+
+  .iconButton{
+    color:rgba(63, 63, 63, 1);
+  }
+
+  .sortButton:hover ,.sortButton:focus {
+    color: white;  
+    background-color: rgba(123, 97, 250, 0.8); 
+  }
+
+
+  
+  .sortButtonText{
+    display: none;
+  }
+
+  @media (min-width: 768px) and (max-width: 1279px){
+    .sortButtonText{
+      display:block;
+    }
+  }
+  @media  (min-width: 1280px){
+    .sortButtonText{
+      display: block;
+    }
+  }

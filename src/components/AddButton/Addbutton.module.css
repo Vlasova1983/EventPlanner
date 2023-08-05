@@ -1,0 +1,41 @@
+.addButton{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    color: white; 
+    background-color: rgba(123, 97, 255, 1);
+ 
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+
+  .iconButton{
+    color: white; 
+  }
+
+  .addButton:hover ,.addButton:focus {
+    color: white;  
+    background-color: rgba(123, 97, 250, 0.8);
+   
+  }
+
+
+  
+  .addButtonText{
+    display: none;
+  }
+
+  @media (min-width: 768px) and (max-width: 1279px){
+    .addButtonText{
+      display:block;
+    }
+  }
+  @media  (min-width: 1280px){
+    .addButtonText{
+      display: block;
+    }
+  }

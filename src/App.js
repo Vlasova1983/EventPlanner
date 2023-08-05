@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import {Suspense} from 'react';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import AllEvent from "./Page/AllEvent/AllEvent";
+import AddEvent from "./Page/AddEvent/AddEvent";
+import OneEvent from "./Page/OneEvent/OneEvent";
+import Layout from "./components/Layout/Layout";
+import EditEvent from './Page/EditEvent/EditEvent';
+
+
+const App = () => {
+ return(
+  <BrowserRouter >    
+    <Suspense >
+      < Layout >        
+          <Routes>   
+            <Route path="" element={<AllEvent/>} />
+            <Route path="event" element={<AddEvent/>} />    
+            <Route path="event/:eventId" element={<OneEvent/>}/>
+            <Route path="event/edit" element={<EditEvent/>}/>               
+          </Routes>       
+      </Layout> 
+    </Suspense>        
+  </BrowserRouter>
+ );
+};
+
 
 export default App;
