@@ -1,5 +1,4 @@
 import styles  from '../OneEvent/OneEvent.module.css';
-import {useEffect,useState} from "react";
 import Icon from '@mdi/react';
 import { mdiArrowLeft } from '@mdi/js';
 import { Link, useParams} from 'react-router-dom';
@@ -36,7 +35,7 @@ const OneEvent= () => {
                             </div>                    
                       
                         <div className={styles.conteinerButton}> 
-                            <Link  className={styles.editButton} to={'/edit'} >                       
+                            <Link  className={styles.editButton} to={'/event/edit'} >                       
                                 <p>Edit</p>               
                             </Link>
                             <button className={styles.deleteButton}>Delete event</button>  

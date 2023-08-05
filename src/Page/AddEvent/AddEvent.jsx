@@ -1,17 +1,12 @@
 
-import {Link, useLocation} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-const AddEvent = () => {   
-      
-    const location = useLocation();    
-    
-        
+const AddEvent = () => {       
     return (
        <> 
-        <Link to={location.state?.from?? 'home'} >Go back</Link>             
-           <h4>Страница создания нового события</h4>
-       </> 
-        
+            <Link to={'/'} >Go back</Link>             
+            <h4>Страница создания нового</h4>
+       </>         
     );   
 }
  
