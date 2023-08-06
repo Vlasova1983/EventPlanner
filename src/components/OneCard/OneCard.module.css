@@ -1,0 +1,168 @@
+.title {
+    margin: 24px 0;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #3F3F3F;
+}
+
+
+.card {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+    width: 272px;
+    height: 464px;
+}
+
+.imgConteiner {
+    overflow: hidden;
+    text-align: center;
+    width: 272px;
+    height: 168px;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.image {
+    background-size: 100% auto;
+}
+
+.conteinerText {
+    padding: 24px 24px 0 24px;
+}
+
+.description {
+    color: rgba(73, 69, 79, 1);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.conteinerOptions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: #7B61FF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 24px;
+}
+
+.option {
+    padding: 6px 9px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 4px 5px 9px 0px rgba(166, 141, 174, 0.28);
+}
+
+.priority {
+    padding: 6px 9px;
+    color: rgba(255, 43, 119, 1);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 4px 5px 9px 0px rgba(166, 141, 174, 0.28);
+}
+
+.conteinerButton {
+    display: flex;
+    justify-content: right;
+    gap: 16px;
+    margin-top: 40px;
+    padding: 0 16px;
+}
+
+.editButton {
+    display: flex;
+    align-items: center;
+    color: #7B61FF;
+    border: 1px solid #7B61FF;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.deleteButton {
+    color: white;
+    background-color: rgba(123, 97, 255, 1);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 26px;
+    cursor: pointer;
+}
+
+.deleteButton:hover,
+.deleteButton:focus {
+    color: white;
+box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+
+}
+
+.editButton:hover,
+.editButton:focus {
+
+box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    
+
+    .title {
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .card {
+        width: 688px;
+        height: 504px;
+    }
+
+    .imgConteiner {
+        width: 688px;
+        height: 272px;
+    }
+
+    .conteinerText {
+        padding: 24px 24px 0 24px;
+    }
+}
+
+@media (min-width: 1280px) {
+    
+    .title {
+        margin: 17px 0 14px 0;
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .card {
+        width: 628px;
+        height: 492px;
+    }
+
+    .imgConteiner {
+        width: 628px;
+        height: 272px;
+    }
+
+    .conteinerText {
+        padding: 20px 10px 0 10px;
+    }
+
+    .conteinerOptions {
+        margin-top: 12px;
+    }
+
+    .conteinerButton {
+        margin-top: 24px;
+        padding: 0 24px;
+    }
+
+}

@@ -1,0 +1,28 @@
+.backButton{
+  margin-top: 42px;  
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(123, 97, 255, 1);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {  
+
+  .backButton {
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+ 
+
+  .backButton {
+    margin-top: 18px;
+  }
+
+}

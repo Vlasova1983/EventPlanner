@@ -19,7 +19,7 @@
 
   .addButton:hover ,.addButton:focus {
     color: white;  
-    background-color: rgba(123, 97, 250, 0.8);
+     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
    
   }
 

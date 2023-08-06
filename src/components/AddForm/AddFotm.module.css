@@ -1,0 +1,230 @@
+.form{ 
+   padding: 40px 16px;    
+}
+
+.box1,.box2,.box3,.box4,.box5,.box6,.box8{
+   width: 100%;
+   color:rgba(123, 97, 255, 1);
+   font-weight: 400;
+   font-size: 16px;
+   left: 16px;
+   padding-bottom: 15px;
+}
+.lable p{   
+   margin-bottom: 8px;
+}
+.input{
+   width: 230px;
+   height: 46px;
+   padding: 5px;
+   
+   border-radius: 8px;
+   border: 1px solid rgba(172, 167, 195, 1)
+  
+}
+.input:hover,.input:focus{
+   border: 1px solid rgba(255, 43, 119, 1);
+}
+
+
+.description{
+   width: 230px;
+   height: 126px;
+   padding: 5px;
+
+   border-radius: 8px;
+   border: 1px solid rgba(172, 167, 195, 1)
+}
+.description:hover,.description:focus{
+   border: 1px solid rgba(255, 43, 119, 1);
+}
+.button{ 
+   margin-top: 20px; 
+   padding: 16px 12px;
+   width: 240px;
+   border-radius: 8px;
+   color: white;
+   background-color: rgba(123, 97, 255, 1);
+   
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 24px;
+   cursor: pointer;
+}
+
+ .button:hover,
+ .button:focus {
+   color: white;
+   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);    
+
+ }
+
+ @media (min-width: 768px) and (max-width: 1279px) {
+    .form{
+      padding: 40px 24px;     
+    }
+    .flex {
+      width: 688px;
+      height: 656px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(6, 1fr);     
+   }
+
+   .box1{
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 1;
+      grid-row-end: 1;
+   }
+   .box2{
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 2;
+      grid-row-end: 4;
+   }
+   .box3{
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 4;
+      grid-row-end: 4;
+   }
+   .box4{
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 5;
+      grid-row-end: 5;
+   }
+   .box5{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 1;
+   }
+   .box6{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 2;
+   }
+
+   .box7{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 3;
+      grid-row-end: 3;
+   }
+   .box8{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 4;
+      grid-row-end: 4;
+   }
+   .flex div{
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+   }
+   .boxButton{
+      display: flex;
+      justify-content: right;
+      margin-top: -130px;
+   }
+   .button{
+      width: 193px;
+   }
+   .input{
+      width: 298px;     
+   }
+   
+   .description{
+      width: 298px;
+   }
+ }
+
+ @media (min-width: 1280px) {
+   .form {
+      padding: 40px;
+   }
+
+   .flex {
+      width: 1200px;
+      height: 450px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);     
+   }
+   .flex div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+   }
+   .box1{
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 1;
+      grid-row-end: 1;
+   }
+   .box2{
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 2;
+      grid-row-end: 4;
+   }
+   .box3{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 1;
+   }
+   .box4{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 2;
+   }
+   .box5{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 3;
+      grid-row-end: 3;
+   }
+   .box6{
+      grid-column-start: 3;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 1;
+   }
+
+   .box7{
+      grid-column-start: 3;
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 2;
+   }
+   .box8{
+      grid-column-start: 3;
+      grid-column-end: 3;
+      grid-row-start: 3;
+      grid-row-end: 3;
+   }
+
+   .boxButton {
+      display: flex;
+      justify-content: right;
+      margin-top: -100px;     
+   }
+
+   .button {
+      width: 193px;
+   }
+   .input {
+      width: 362px;
+   }
+
+  
+   .description {
+      width: 362px;
+      height: 156px;
+   }
+ }

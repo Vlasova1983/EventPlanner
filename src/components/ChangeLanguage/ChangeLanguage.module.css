@@ -5,6 +5,8 @@
     padding: 12px;  
 
     color:rgba(63, 63, 63, 1);
+   
+    background-color: white;
     border-radius: 8px;
 
     font-weight: 500;
@@ -15,6 +17,5 @@
 
 
 .ChangeLanguageButton:hover ,.ChangeLanguageButtonn:focus {
-    color: white;  
-    background-color: rgba(123, 97, 255, 1);      
+    box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);    
 }

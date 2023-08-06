@@ -1,124 +1,27 @@
-.conteiner{ 
-  display: flex; 
+.conteiner{
+  padding: 0 24px;
+}
+.conteinerPage{
+  display: flex;
   justify-content: center;
 }
 
 
-.backButton{
-  margin-top: 42px;  
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 21px;
-  cursor: pointer;
-}
-.card{  
-  width:688px;
-  height: 504px;
-  
-}
-
-.imgConteiner{
-  overflow: hidden;
-  text-align: center;
-  width: ;
-  height: 168px;
-  border-radius: 12px; 
-  margin: 0 auto;
-}
-
-.image{
-  background-size: 100% auto;    
-}
-
-.title{
-  margin: 24px 0 ;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 48px;
-  color: #3F3F3F;
-}
-
-.description{
-  margin:24px 0;
-}
-.conteinerText{
-  padding: 0 24px; 
-}
-.conteinerOptions{
-  display: flex;
-  gap:12px ;
-  color: #7B61FF;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.priority{
-  color:#FF2B77;
-}
-
-.conteinerButton{
-  display: flex;
-  justify-content: right;
-  gap: 16px;
-  margin-top: 40px;
-  padding: 0 24px;  
-}
-
-.editButton{
-  display: flex;
-  align-items: center;
-  color: #7B61FF;
-  border: 1px solid #7B61FF;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  cursor: pointer;
-}
-.deleteButton{
-  color: white; 
-  background-color: rgba(123, 97, 255, 1);
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 26px;
-  cursor: pointer;
-}
-
-.deleteButton:hover ,.deleteButton:focus {
-  color: white;  
-  background-color: rgba(123, 97, 250, 0.8);
- 
-}
-.editButton:hover ,.editButton:focus {
-  color: white;  
-  background-color: rgba(123, 97, 250, 0.8);
- 
-}
-
 @media (min-width: 768px) and (max-width: 1279px){
-  .conteinerButton,{
-    padding: 0 40px; 
+  .conteiner{
+    padding: 0 40px;
   }
   .backButton{
     margin-top: 40px;
-  }
+  }  
 }
 
 @media  (min-width: 1280px){
-  .conteinerButton,.conteinerText{
-    padding: 0 80px;  
+  .conteiner {
+    padding: 0 80px;
   }
-
   .backButton{
     margin-top: 18px;
-  }
+  } 
   
 }

@@ -1,23 +1,23 @@
-import styles  from '../SearchForm/SearchForm.module.css';
+import styles from '../SearchForm/SearchForm.module.css';
+import { PropTypes } from 'prop-types';
 import {useState} from 'react';
-import { useSearchParams} from 'react-router-dom';
 
-const SearchForm = () => {
-    const [value,setIsValue] = useState('');
-    const [searchParams, setSearchParams]=useSearchParams(); 
+
+const SearchForm = ({ onFilter }) => {
+    const [value,setIsValue] = useState('');    
     
     const  handleChange = event => {    
         const { value}  = event.target;       
-        setIsValue(value);              
+        setIsValue(value);
+        onFilter(value.toLowerCase());
     };
-
-    const handleSubmit = event =>{ 
+        
+    const handleSubmit = event => {       
         event.preventDefault();
-        setSearchParams({quary:value})                        
+        onFilter('');                       
         setIsValue('');                      
     }; 
     
-
 
     return (       
         <form className={styles.SearchForm} onSubmit={handleSubmit}>                    
@@ -30,7 +30,7 @@ const SearchForm = () => {
                 autoComplete="off"
                 autoFocus
                 value={value}
-                placeholder="Search by keywords"
+                placeholder="Search event title"
                 onChange={handleChange} 
             />                    
         </form>               
@@ -38,3 +38,7 @@ const SearchForm = () => {
 }
 
 export default SearchForm;
+
+SearchForm.propTypes = {   
+    onFilter:PropTypes.func
+}

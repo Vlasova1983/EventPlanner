@@ -1,13 +1,27 @@
+import styles from './AddEvent.module.css';
+import { PropTypes } from 'prop-types';
+import BackButton from '../../components/BackButton/BackButton';
+import AddForm from '../../components/AddForm/AddForm';
 
-import {Link} from 'react-router-dom';
 
-const AddEvent = () => {       
+const AddEvent = ({ addEvent}) => {    
     return (
-       <> 
-            <Link to={'/'} >Go back</Link>             
-            <h4>Страница создания нового</h4>
-       </>         
+       <div className={styles.conteiner}> 
+            <BackButton/> 
+            <div className={styles.conteinerPage}>                
+                <div>
+                    <h2  className={styles.title}>Create new event</h2>                        
+                    <div className={styles.card}>
+                       <AddForm  addEvent={addEvent}/> 
+                    </div>
+                </div>
+            </div>
+       </div>         
     );   
 }
  
 export default AddEvent;
+
+AddEvent.propTypes = {   
+    addEvent:PropTypes.func
+}

@@ -1,10 +1,10 @@
-
-import styles  from '../Layout/Layout.module.css';
+import styles from '../Layout/Layout.module.css';
+import { PropTypes } from 'prop-types';
 import SearchForm from '../SearchForm/SearchForm';
 import ChangeLanguage from '../ChangeLanguage/ChangeLanguage';
 
 
-const Layout = ({children}) => {
+const Layout = ({children,onFilter}) => {
     return (      
         <>
            <div className={styles.layoutConteiner}>
@@ -12,7 +12,7 @@ const Layout = ({children}) => {
                     <h1 className={styles.title}>Event Planner</h1>
                 </div>
                 <div className={styles.box2}>
-                    <SearchForm />
+                    <SearchForm onFilter={onFilter} />
                 </div> 
                 <div className={styles.box3}>               
                     <ChangeLanguage />                                          
@@ -24,3 +24,7 @@ const Layout = ({children}) => {
 }
 
 export default Layout;
+
+Layout.propTypes = {   
+    onFilter:PropTypes.func
+}
