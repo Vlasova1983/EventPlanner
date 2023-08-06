@@ -11,8 +11,7 @@ const OneCard = ({ event, onClick }) => {
         onClick(item.id); 
         navigate(-1);              
     };
-    return (
-       
+    return (       
             < div >
                 < h2 className={styles.title} > {item.title}</h2 >
                 <div className={styles.card}>
