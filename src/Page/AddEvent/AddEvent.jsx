@@ -3,7 +3,6 @@ import { PropTypes } from 'prop-types';
 import BackButton from '../../components/BackButton/BackButton';
 import AddForm from '../../components/AddForm/AddForm';
 
-
 const AddEvent = ({ addEvent}) => {    
     return (
        <div className={styles.conteiner}> 
