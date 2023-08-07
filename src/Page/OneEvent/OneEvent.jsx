@@ -4,7 +4,7 @@ import { useParams} from 'react-router-dom';
 import OneCard from '../../components/OneCard/OneCard';
 import BackButton from '../../components/BackButton/BackButton';
 
-const OneEvent= ({events, onClick}) => {
+const OneEvent= ({events, onDelete}) => {
     const { eventId } = useParams();    
     const event= events.filter((item)=>item.id.includes(eventId))    
 
@@ -13,7 +13,7 @@ const OneEvent= ({events, onClick}) => {
             <div className={styles.conteiner}>
                 <BackButton/>                
                 <div className={styles.conteinerPage}>                
-                    <OneCard event={event} onClick={ onClick } />                   
+                    <OneCard event={event} onDelete={ onDelete } />                   
                 </div>
             </div>
         </>          
@@ -23,5 +23,5 @@ const OneEvent= ({events, onClick}) => {
 export default OneEvent;
 OneEvent.propTypes = {       
     event: PropTypes.object,
-    onClick:PropTypes.func
+    onDelete:PropTypes.func
 }

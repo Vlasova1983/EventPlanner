@@ -1,8 +1,21 @@
 import styles  from  "./Card.module.css";
 import { Link } from 'react-router-dom'; 
-const Card=({item})=>{
-   
 
+const getBgColor = variant => {
+  switch (variant) {
+    case 'Medium':
+      return "rgba(226, 163, 0, 1)";
+    case "Hight":
+      return "rgba(255, 43, 119, 1)";
+    case "Low":
+      return "rgba(107, 212, 117, 1)";    
+    default:
+      throw new Error(`Unsupported variant prop value - ${variant}`);
+  }
+};
+
+const Card = ({ item }) => { 
+ 
     return( 
         <>
             <div className={styles.card}>
@@ -10,8 +23,8 @@ const Card=({item})=>{
                     <img className={styles.image} src={item.url} alt={"Event"} width={'100%'} height={'100%'}/>
                 </div>
                 <div className={styles.options}>
-                    <p className={styles.categoria}>{item.categoria}</p>
-                    <p className={styles.priority}>{item.priority}</p>
+                    <p className={styles.categoria}>{item.category}</p>
+                    <p className={styles.priority} style={{color: getBgColor(item.priority) }}>{item.priority}</p>
                 </div>                
                 <div className={styles.conteinerContext}>
                     <div className={styles.dateConteiner}>
