@@ -19,9 +19,8 @@ const App = () => {
   const [events, setEvents] = useState(() => {
     return JSON.parse(localStorage.getItem('events')) || data;
   });
-console.log('render')
-  useEffect(() => {
-    console.log('rerender')
+
+  useEffect(() => {    
     localStorage.setItem('events', JSON.stringify(events));    
   }, [events]);
   
@@ -29,30 +28,72 @@ console.log('render')
     setEvents([...events, { id:getRandomID(),title, description, date, time, location, category, priority,url}]);
   };
 
-  const handleFilter =(value)=>{ 
-    setInFilter(value);       
-  };
+  
  
   const hendleDelete = (data) => { 
     setEvents(events.filter((event)=>event.id !== data));     
   }  
 
-  const hendleSort = () => {    
-    const sortEvents = events.sort((x, y) =>{    
-    if (x.category < y.category) {
-      return -1;
-    } 
-    if (x.category > y.category) {
-      return 1;
-    }
-      return 0
-    });
-    console.log(sortEvents)
-    setEvents(sortEvents ); 
-  }
+  const hendleSort = (data) => {
+    const { name } = data;
+    // ToDo  id button  (sort revers) 
+    let sortEvents = {};
 
-  const getFilter = () => {  
-    return events.filter((event) => event.title.toLowerCase().includes(filter));
+    if (name === 'title') {
+        sortEvents = events.sort((x, y) =>{    
+      if (x.title < y.title) {
+        return -1;
+      } 
+      if (x.title > y.title) {
+        return 1;
+      }
+        return 0
+      });
+    }
+
+    if (name === 'date') {
+        sortEvents = events.sort((x, y) =>{    
+      if (x.date < y.date) {
+        return -1;
+      } 
+      if (x.date > y.date) {
+        return 1;
+      }
+        return 0
+      });
+    }
+
+    if (name === 'priority') {
+        sortEvents = events.sort((x, y) =>{    
+      if (x.priority < y.priority) {
+        return -1;
+      } 
+      if (x.priority > y.priority) {
+        return 1;
+      }
+        return 0
+      });
+    }
+     
+    localStorage.setItem('events', JSON.stringify(sortEvents));
+    window.location.reload();
+  }
+  
+  const handleFilter = (data) => {    
+    setInFilter(data);  
+  }
+  const getFilter = () => { 
+    if (filter === 'Art' ||
+      filter === 'Music' ||
+      filter === 'Business' ||
+      filter === 'Conference' ||
+      filter === 'Workshop' ||
+      filter === 'Party' ||
+      filter === 'Sport'
+    ){return events.filter((event) => event.category.includes(filter));
+    } else {
+      return events.filter((event) => event.title.toLowerCase().includes(filter));
+    }    
   };   
  
   return(
@@ -60,10 +101,10 @@ console.log('render')
       <Suspense >
         < Layout onFilter={handleFilter} >        
           <Routes>   
-            <Route path="" element={<AllEvent events={getFilter()} onSort={ hendleSort} />} />
+            <Route path="" element={<AllEvent events={getFilter()} onSort={hendleSort} onFilter={handleFilter} />} />
             <Route path="event" element={<AddEvent addEvent={handleAdd}/>}/>    
             <Route path="event/:eventId" element={<OneEvent onDelete={hendleDelete} events={events}/>}/>
-            <Route path="event/edit" element={<EditEvent  events={events}/>}/>               
+            <Route path="event/:eventId/edit" element={<EditEvent  events={events}/>}/>               
           </Routes>       
         </Layout> 
       </Suspense>        

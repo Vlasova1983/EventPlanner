@@ -1,38 +1,96 @@
 .sortButton{
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px;
-    border-radius: 8px;
-    color:rgba(63, 63, 63, 1);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  color:#7B61FF;
+  stroke: #7B61FF;
+  background-color: white;
  
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    cursor: pointer;
-  }
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}  
+   
+.dropdown { 
+  display: inline-block;
+}    
 
-  .iconButton{
-    color:rgba(63, 63, 63, 1);
-  }
 
-  .sortButton:hover ,.sortButton:focus {
-    box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-  }
+.dropdownContent {
+  display: none;
+  position: absolute;  
+  width: 100%;
+  z-index: 1;
+}
+
+
+.dropdownContent button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px; 
+  width: 123px;
+  color:#ACA7C3;
+  stroke:#ACA7C3;
+  background-color: white;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  border-bottom: 1px solid #ACA7C3;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none; 
+}
+
+
+.dropdownContent button:hover,.dropdownContent button:focus {
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+  color: rgba(63, 63, 63, 1);
+  stroke: rgba(63, 63, 63, 1);
+}
+
+ 
+.dropdown:hover .dropdownContent {
+  display: block;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+ 
+.sortButton:hover,
+.dropdown:hover .sortButton
+.sortButton:focus,
+.dropdown:focus .sortButton
+{
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+  color: rgba(63, 63, 63, 1);
+  stroke: rgba(63, 63, 63, 1);
+}
 
 
   
-  .sortButtonText{
-    display: none;
-  }
+.sortButtonText{
+  display: none;
+}
 
-  @media (min-width: 768px) and (max-width: 1279px){
-    .sortButtonText{
-      display:block;
-    }
+@media (min-width: 768px) and (max-width: 1279px){
+  .sortButtonText{
+    display:block;
   }
-  @media  (min-width: 1280px){
-    .sortButtonText{
-      display: block;
-    }
+}
+
+@media  (min-width: 1280px){
+  .sortButtonText{
+    display: block;
   }
+}
+
+
+  

@@ -1,18 +1,22 @@
-import styles from './AddForm.module.css';
+import styles from './EditForm.module.css';
 import { PropTypes } from 'prop-types';
 import {useState} from "react";
 import { useNavigate } from 'react-router-dom';
-
-const AddForm = ({ addEvent }) => {
+import { useParams } from 'react-router-dom';
+// Todo date,categoria,prioreti and search form
+const EditForm = ({ events }) => {
     const navigate = useNavigate();
-    const [title, setInTitle] = useState('');
-    const [description, setInDescription] = useState('');
-    const [date, setInDate] = useState('');
+    const { eventId } = useParams();
+    const event = events.filter((item) => item.id.includes(eventId));
+    const item = event[0];
+    
+    const [title, setInTitle] = useState(item.title);
+    const [description, setInDescription] = useState(item.description);
+    const [date, setInDate] = useState(item.date);
     const [time, setInTime] = useState('');
-    const [location, setInLocation] = useState('');
+    const [location, setInLocation] = useState(item.location);
     const [category, setInCategory] = useState('');
     const [priority, setInPriority] = useState(''); 
- 
 
     const handleChange = event => { 
       const { name, value } = event.target; 
@@ -28,8 +32,9 @@ const AddForm = ({ addEvent }) => {
    
   
     const handleFormSubmit = evt => {       
-        evt.preventDefault();    
-        addEvent({title, description, date, time, location, category, priority});
+        evt.preventDefault();
+        console.log({title, description, date, time, location, category, priority})
+        // editEvent({title, description, date, time, location, category, priority});
         setInTitle('');
         setInDescription('');
         setInDate('');
@@ -107,13 +112,14 @@ const AddForm = ({ addEvent }) => {
                 </div>            
             </div>
             <div className={styles.boxButton}>
-                <button className={styles.button} type="submit">Add event</button>
+                <button className={styles.button} type="submit">Save</button>
             </div>        
         </form>      
   );    
 }
 
-export default AddForm;
- AddForm.propTypes = {    
-    addEvent:PropTypes.func
+export default EditForm;
+
+EditForm.propTypes = {
+    events: PropTypes.array,
 }

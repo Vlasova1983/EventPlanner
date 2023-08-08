@@ -2,16 +2,57 @@
     padding: 0 24px;
 }
 
+
+.conteinerPage {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    margin: 24px 0;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #3F3F3F;
+}
+
+
+.card {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+    width: 272px;
+    height: 1056px;
+}
+
 @media (min-width: 768px) and (max-width: 1279px) {
     .conteiner {
         padding: 0 40px;
     }
 
    
+    .title {
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .card {
+        width: 688px;
+        height: 656px;
+    }
 }
 
 @media (min-width: 1280px) {
-    .conteiner {
-        padding: 0 80px;
+
+    .title {
+        margin: 17px 0 14px 0;
+        font-size: 32px;
+        line-height: 48px;
     }
+
+    .card {
+        width: 1280px;
+        height: 490px;
+    }
+
 }

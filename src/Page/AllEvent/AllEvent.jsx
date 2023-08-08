@@ -6,12 +6,12 @@ import SortButton from "../../components/SortButton/SortButton";
 import FilterButton from "../../components/FilterButton/FilterButton";
 
 
-const AllEvent = ({ events,onSort }) => {    
+const AllEvent = ({ events,onSort,onFilter }) => {    
     return (
         <div className={styles.conteiner}>
             <div className={styles.conteinerTitel}>
                 <div className={styles.conteinerButton}> 
-                    <FilterButton/>
+                    <FilterButton onFilter={ onFilter} />
                     <SortButton onSort={onSort} />
                     <AddButton/>               
                 </div>
@@ -29,5 +29,6 @@ export default AllEvent;
 
 AllEvent.propTypes = {    
     events: PropTypes.arrayOf(PropTypes.shape()), 
-    onSort:PropTypes.func
+    onSort: PropTypes.func,
+    onFilter:PropTypes.func
 }

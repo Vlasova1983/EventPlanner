@@ -2,19 +2,6 @@
     padding: 0 24px;
 }
 
-.backButton {
-    margin-top: 42px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
-    color: rgba(123, 97, 255, 1);
-    cursor: pointer;
-}
-
 .conteinerPage {
     display: flex;
     justify-content: center;
@@ -42,9 +29,7 @@
         padding: 0 40px;
     }
 
-    .backButton {
-        margin-top: 40px;
-    }
+    
     .title {
         font-size: 32px;
         line-height: 48px;
@@ -59,9 +44,6 @@
 @media (min-width: 1280px) {
    
 
-    .backButton {
-        margin-top: 18px;
-    }
     .title {
         margin: 17px 0 14px 0;
         font-size: 32px;

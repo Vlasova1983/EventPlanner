@@ -46,7 +46,7 @@ const OneCard = ({ event, onDelete }) => {
                             </div>
                         </div>
                         <div className={styles.conteinerButton}>
-                            <Link className={styles.editButton} to={'/event/edit'} >
+                            <Link className={styles.editButton} to={'edit'} >
                                 <p>Edit</p>
                             </Link>
                             <button className={styles.deleteButton} onClick={onClickDelete}>Delete event</button>
