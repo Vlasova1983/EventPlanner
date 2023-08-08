@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
 
-
 const AddButton=()=>{
     return (       
         <Link  className={styles.addButton} to="event">                    
