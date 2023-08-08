@@ -25,7 +25,8 @@ const FilterButton = ({onFilter}) => {
                 <button onClick={onClickFilter} name={'Conference'}>Conference</button>
                 <button onClick={onClickFilter} name={'Workshop'}>Workshop</button>
                 <button onClick={onClickFilter} name={'Party'}>Party</button>
-                <button onClick={onClickFilter} name={'Sport'}>Sport</button>                   
+                <button onClick={onClickFilter} name={'Sport'}>Sport</button>
+                <button onClick={onClickFilter} name={'All'}>All</button>  
             </div>
         </div>   
     )

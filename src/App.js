@@ -83,6 +83,9 @@ const App = () => {
     setInFilter(data);  
   }
   const getFilter = () => { 
+    if (filter === 'All') {
+      window.location.reload();
+    }
     if (filter === 'Art' ||
       filter === 'Music' ||
       filter === 'Business' ||
