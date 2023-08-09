@@ -23,9 +23,9 @@
 }
 
 .input {    
-    width: 230px;
-    height: 46px;
-    padding: 5px;
+    width: 216px;
+    height: 24px;
+    padding: 16px 12px;
 
     border-radius: 8px;
     border: 1px solid rgba(172, 167, 195, 1)
@@ -46,9 +46,9 @@
 
 .description {    
     text-overflow:ellipsis;    
-    width: 230px;
-    height: 126px;
-    padding: 5px;
+    width: 216px;
+    height: 104px;
+    padding:16px 12px;
 
     border-radius: 8px;
     border: 1px solid rgba(172, 167, 195, 1)
@@ -166,11 +166,11 @@
     }
 
     .input {
-        width: 298px;
+        width: 284px;
     }
 
     .description {
-        width: 298px;
+        width: 284px;
     }
 }
 
@@ -260,12 +260,12 @@
     }
 
     .input {
-        width: 362px;
+        width: 348px;
     }
 
 
     .description {
-        width: 362px;
+        width: 348px;
         height: 156px;
     }
 }

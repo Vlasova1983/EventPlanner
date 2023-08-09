@@ -1,7 +1,7 @@
 import styles  from '../SortButton/SortButton.module.css';
 import { ReactComponent as FilterIcon } from './filters.svg';
 import { ReactComponent as UpArrow } from './arrow-up-small.svg';
-// import { ReactComponent as DownArrow } from './arrow-down-small.svg'
+import { ReactComponent as DownArrow } from './arrow-down-small.svg'
 import { PropTypes } from 'prop-types';
 
 const SortButton = ({ onSort }) => {
@@ -22,21 +22,21 @@ const SortButton = ({ onSort }) => {
                     <button onClick={onClickSort} name='title' id='up'>by name
                         <UpArrow/>
                     </button>
-                    {/* <button onClick={onClickSort} name='title' id='down'>by name
+                    <button onClick={onClickSort} name='title' id='down'>by name
                         <DownArrow/>
-                    </button> */}
+                    </button>
                     <button onClick={onClickSort} name='date' id='up'>by data
                         <UpArrow />
                     </button>
-                    {/* <button onClick={onClickSort} name='date' id='down'>by data
+                    <button onClick={onClickSort} name='date' id='down'>by data
                         <DownArrow/>
-                    </button> */}
+                    </button>
                     <button onClick={onClickSort} name='priority' id='up'>by priority
                          <UpArrow/>
                     </button>
-                    {/* <button onClick={onClickSort}  name='priority' id='down'>by priority
+                    <button onClick={onClickSort}  name='priority' id='down'>by priority
                         <DownArrow/>
-                    </button> */}
+                    </button>
                 </div>
             </div>            
         </>       

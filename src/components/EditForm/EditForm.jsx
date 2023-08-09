@@ -3,8 +3,8 @@ import { PropTypes } from 'prop-types';
 import {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-// Todo date,categoria,prioreti and search form
-const EditForm = ({ events }) => {
+
+const EditForm = ({ events,editEvent }) => {
     const navigate = useNavigate();
     const { eventId } = useParams();
     const event = events.filter((item) => item.id.includes(eventId));
@@ -13,12 +13,12 @@ const EditForm = ({ events }) => {
     const [title, setInTitle] = useState(item.title);
     const [description, setInDescription] = useState(item.description);
     const [date, setInDate] = useState(item.date);
-    const [time, setInTime] = useState('');
+    const [time, setInTime] = useState(item.time);
     const [location, setInLocation] = useState(item.location);
-    const [category, setInCategory] = useState('');
-    const [priority, setInPriority] = useState(''); 
+    const [category, setInCategory] = useState(item.category);
+    const [priority, setInPriority] = useState(item.priority); 
 
-    const handleChange = event => { 
+    const handleChange = event => {       
       const { name, value } = event.target; 
       
       if (name === 'title') { setInTitle(value) }
@@ -28,13 +28,12 @@ const EditForm = ({ events }) => {
       if (name === 'location') { setInLocation(value) }
       if (name === 'category') { setInCategory(value) }
       if (name === 'priority') { setInPriority(value) }
-  }; 
+    }; 
    
   
     const handleFormSubmit = evt => {       
-        evt.preventDefault();
-        console.log({title, description, date, time, location, category, priority})
-        // editEvent({title, description, date, time, location, category, priority});
+        evt.preventDefault();        
+        editEvent({title, description, date, time, location, category, priority,eventId});
         setInTitle('');
         setInDescription('');
         setInDate('');
@@ -82,13 +81,13 @@ const EditForm = ({ events }) => {
                     <label  className={styles.lable} htmlFor="favorite-category" >
                     <p>Сategory</p>
                   </label> 
-                  <input className={styles.input}  onChange={handleChange} list="category" name="category" id="favorite-category" required/>
+                  <input className={styles.input}  onChange={handleChange} list="category" name="category" id="favorite-category" value={category} required/>
                     <datalist id="category" >
-                        <option >Art</option>
+                        <option>Art</option>
                         <option>Music</option>
-                        <option >Business</option>
-                        <option >Conference</option>
-                        <option >Workshop</option>
+                        <option>Business</option>
+                        <option>Conference</option>
+                        <option>Workshop</option>
                         <option>Party</option>
                         <option>Sport</option>                              
                     </datalist>
@@ -103,7 +102,7 @@ const EditForm = ({ events }) => {
                     <label className={styles.lable} htmlFor="favorite-priority" >
                         <p>Priority</p>
                     </label>
-                    <input className={styles.input}  onChange={handleChange} list="priority" name="priority" id="favorite-priority" required/>                 
+                    <input className={styles.input}  onChange={handleChange} list="priority" name="priority" id="favorite-priority" value={priority} required/>                 
                         <datalist id="priority">
                             <option >Hight</option>
                             <option >Medium</option>
@@ -122,4 +121,5 @@ export default EditForm;
 
 EditForm.propTypes = {
     events: PropTypes.array,
+    editEvent:PropTypes.func
 }

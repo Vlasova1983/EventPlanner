@@ -10,7 +10,7 @@ import data from "./data/data.json";
 
 const getRandomID=()=> {
   return `${Math.floor(Math.random() * 16777215).toString(16)}`;
-};
+}
 
 const App = () => {
   const url = "https://images.pexels.com/photos/461199/pexels-photo-461199.jpeg?dpr=2&h=480&w=640";
@@ -18,27 +18,32 @@ const App = () => {
   const [filter, setInFilter] = useState('');
   const [events, setEvents] = useState(() => {
     return JSON.parse(localStorage.getItem('events')) || data;
-  });
-
+  })
+ 
   useEffect(() => {    
     localStorage.setItem('events', JSON.stringify(events));    
   }, [events]);
   
   const handleAdd = ({ title, description, date, time, location, category, priority }) => {
     setEvents([...events, { id:getRandomID(),title, description, date, time, location, category, priority,url}]);
-  };
+  }
 
-  
+  const handleEditEvent = ({ title, description, date, time, location, category, priority,eventId}) => {
+    const newEvent = { title, description, date, time, location, category, priority, id: eventId,url:url };
+    const event = events.find((event) => event.id === eventId);   
+    const index = events.indexOf(event);
+    events.splice(index, 1, newEvent);   
+    localStorage.setItem('events', JSON.stringify(events));    
+  }
  
   const hendleDelete = (data) => { 
     setEvents(events.filter((event)=>event.id !== data));     
   }  
 
   const hendleSort = (data) => {
-    const { name } = data;
-    // ToDo  id button  (sort revers) 
+    const { name,id } = data;    
     let sortEvents = {};
-
+    
     if (name === 'title') {
         sortEvents = events.sort((x, y) =>{    
       if (x.title < y.title) {
@@ -74,14 +79,16 @@ const App = () => {
         return 0
       });
     }
-     
-    localStorage.setItem('events', JSON.stringify(sortEvents));
-    window.location.reload();
+
+    id==="down"?localStorage.setItem('events', JSON.stringify(sortEvents.reverse())):localStorage.setItem('events', JSON.stringify(sortEvents))
+    
+    window.location.reload();    
   }
   
   const handleFilter = (data) => {    
     setInFilter(data);  
   }
+
   const getFilter = () => { 
     if (filter === 'All') {
       window.location.reload();
@@ -97,8 +104,9 @@ const App = () => {
     } else {
       return events.filter((event) => event.title.toLowerCase().includes(filter));
     }    
-  };   
- 
+  }
+  
+
   return(
     <BrowserRouter >    
       <Suspense >
@@ -107,7 +115,7 @@ const App = () => {
             <Route path="" element={<AllEvent events={getFilter()} onSort={hendleSort} onFilter={handleFilter} />} />
             <Route path="event" element={<AddEvent addEvent={handleAdd}/>}/>    
             <Route path="event/:eventId" element={<OneEvent onDelete={hendleDelete} events={events}/>}/>
-            <Route path="event/:eventId/edit" element={<EditEvent  events={events}/>}/>               
+            <Route path="event/:eventId/edit" element={<EditEvent editEvent={handleEditEvent}  events={events}/>}/>               
           </Routes>       
         </Layout> 
       </Suspense>        

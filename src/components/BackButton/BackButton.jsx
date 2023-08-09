@@ -3,10 +3,13 @@ import Icon from '@mdi/react';
 import { mdiArrowLeft } from '@mdi/js';
 import { useNavigate } from 'react-router-dom';
 
+
 const BackButton = () => {
     const navigate = useNavigate();
-    const goBack= ()=>navigate(-1);   
+    const goBack = () => {       
+        navigate(-1);
   
+    }
     return (       
         <button onClick={goBack} className={styles.backButton}>
             <Icon path={mdiArrowLeft} size={1} />
@@ -15,3 +18,4 @@ const BackButton = () => {
     )
 }
 export default BackButton;
+
