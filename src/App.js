@@ -14,7 +14,7 @@ const getRandomID=()=> {
 
 const App = () => {
   const url = "https://images.pexels.com/photos/461199/pexels-photo-461199.jpeg?dpr=2&h=480&w=640";
- 
+  const [test, setTest] = useState('');
   const [filter, setInFilter] = useState('');
   const [events, setEvents] = useState(() => {
     return JSON.parse(localStorage.getItem('events')) || data;
@@ -22,7 +22,7 @@ const App = () => {
  
   useEffect(() => {    
     localStorage.setItem('events', JSON.stringify(events));    
-  }, [events]);
+  }, [events,test]);
   
   const handleAdd = ({ title, description, date, time, location, category, priority }) => {
     setEvents([...events, { id:getRandomID(),title, description, date, time, location, category, priority,url}]);
@@ -114,7 +114,7 @@ const App = () => {
           <Routes>   
             <Route path="" element={<AllEvent events={getFilter()} onSort={hendleSort} onFilter={handleFilter} />} />
             <Route path="event" element={<AddEvent addEvent={handleAdd}/>}/>    
-            <Route path="event/:eventId" element={<OneEvent onDelete={hendleDelete} events={events}/>}/>
+            <Route path="event/:eventId" element={<OneEvent onDelete={hendleDelete} onBack={setTest} events={events}/>}/>
             <Route path="event/:eventId/edit" element={<EditEvent editEvent={handleEditEvent}  events={events}/>}/>               
           </Routes>       
         </Layout> 
