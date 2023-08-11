@@ -8,11 +8,14 @@ import Layout from "./components/Layout/Layout";
 import EditEvent from './Page/EditEvent/EditEvent';
 import data from "./data/data.json";
 
+import { useLang } from './hooks/useLang';
+
 const getRandomID=()=> {
   return `${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 const App = () => {
+  const {lang} = useLang();
   const url = "https://images.pexels.com/photos/461199/pexels-photo-461199.jpeg?dpr=2&h=480&w=640";
   const [test, setTest] = useState('');
   const [filter, setInFilter] = useState('');
@@ -22,7 +25,7 @@ const App = () => {
  
   useEffect(() => {    
     localStorage.setItem('events', JSON.stringify(events));    
-  }, [events,test]);
+  }, [events,test,lang]);
   
   const handleAdd = ({ title, description, date, time, location, category, priority }) => {
     setEvents([...events, { id:getRandomID(),title, description, date, time, location, category, priority,url}]);
@@ -106,7 +109,6 @@ const App = () => {
     }    
   }
   
-
   return(
     <BrowserRouter >    
       <Suspense >
@@ -121,7 +123,6 @@ const App = () => {
       </Suspense>        
     </BrowserRouter>
   );
-   
  
 };
 

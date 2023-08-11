@@ -3,21 +3,29 @@ import styles from './OneCard.module.css';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useLang } from '../../hooks/useLang';
 
 const getBgColor = variant => {
   switch (variant) {
     case 'Medium':
+          return "rgba(226, 163, 0, 1)";
+    case 'Високий':
       return "rgba(226, 163, 0, 1)";
     case "Hight":
+          return "rgba(255, 43, 119, 1)";
+    case "Середній":
       return "rgba(255, 43, 119, 1)";
     case "Low":
-      return "rgba(107, 212, 117, 1)";    
+          return "rgba(107, 212, 117, 1)"; 
+    case "Низький":
+      return "rgba(107, 212, 117, 1)"; 
     default:
       throw new Error(`Unsupported variant prop value - ${variant}`);
   }
 };
 
 const OneCard = ({ event, onDelete }) => {
+     const {lang} = useLang();
     const navigate = useNavigate();  
     const item = event[0];
     
@@ -42,14 +50,23 @@ const OneCard = ({ event, onDelete }) => {
                                 <p className={styles.option}>{item.category}</p>
                                 <p className={styles.priority} style={{ color: getBgColor(item.priority) }}>{item.priority}</p>
                                 <p className={styles.option}>{item.location}</p>
-                                <p className={styles.option}>{item.date} at {item.time}</p>
+                                {lang === 'en' ?
+                                    <p className={styles.option}>{item.date} at {item.time}</p> :
+                                    <p className={styles.option}>{item.date} в {item.time}</p>
+                                }
                             </div>
                         </div>
                         <div className={styles.conteinerButton}>
                             <Link className={styles.editButton} to={'edit'} >
-                                <p>Edit</p>
+                                {lang === 'en' ?
+                                    <p>Edit</p> :
+                                    <p>Редагувати</p>
+                                }
                             </Link>
-                            <button className={styles.deleteButton} onClick={onClickDelete}>Delete event</button>
+                            {lang === 'en' ?
+                                <button className={styles.deleteButton} onClick={onClickDelete}>Delete event</button> :
+                                <button className={styles.deleteButton} onClick={onClickDelete}>Видалити подію</button>
+                            }
                         </div>
                     </div>
                 </div >

@@ -4,9 +4,10 @@ import Card from '../../components/Card/Card';
 import AddButton from "../../components/AddButton/AddButton";
 import SortButton from "../../components/SortButton/SortButton";
 import FilterButton from "../../components/FilterButton/FilterButton";
+import { useLang } from '../../hooks/useLang';
 
-
-const AllEvent = ({ events,onSort,onFilter }) => {    
+const AllEvent = ({ events, onSort, onFilter }) => { 
+     const {lang} = useLang();
     return (
         <div className={styles.conteiner}>
             <div className={styles.conteinerTitel}>
@@ -15,7 +16,10 @@ const AllEvent = ({ events,onSort,onFilter }) => {
                     <SortButton onSort={onSort} />
                     <AddButton/>               
                 </div>
-                <h2 className={styles.titel} >My events</h2> 
+                {lang === 'en' ?
+                    <h2 className={styles.titel} >My events</h2> :
+                    <h2 className={styles.titel} >Мої події</h2>
+                }
             </div>                        
             <div className={styles.wrapper}>
                 {events.map (event=>(
