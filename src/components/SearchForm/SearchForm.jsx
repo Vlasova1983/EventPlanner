@@ -1,7 +1,11 @@
-import styles from '../SearchForm/SearchForm.module.css';
-import { PropTypes } from 'prop-types';
 import {useState} from 'react';
+import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
+import { ReactComponent as IconSearch } from './search.svg';
+import { ReactComponent as IconDelete } from './cross-small.svg';
+import styles from '../SearchForm/SearchForm.module.css';
+
+
 
 const SearchForm = ({ onFilter }) => {
     const {lang} = useLang();
@@ -21,13 +25,13 @@ const SearchForm = ({ onFilter }) => {
     
 
     return (       
-        <form className={styles.SearchForm} onSubmit={handleSubmit}>                    
-            <button  type="submit" className={styles.SearchForm_button} >
-                <span className={styles.SearchForm_button_label} >Search</span>
+        <form className={styles.form} onSubmit={handleSubmit}>                    
+            <button  type="submit" className={styles.search_button} >                
+                <IconSearch aria-label={'icon-search'}/>
             </button>
             {lang === 'en' ?
                 <input
-                    className={styles.SearchForm_input}
+                    className={styles.input}
                     type="text"
                     autoComplete="off"
                     autoFocus
@@ -36,7 +40,7 @@ const SearchForm = ({ onFilter }) => {
                     onChange={handleChange}
                 /> :
                 <input
-                    className={styles.SearchForm_input}
+                    className={styles.input}
                     type="text"
                     autoComplete="off"
                     autoFocus
@@ -44,7 +48,10 @@ const SearchForm = ({ onFilter }) => {
                     placeholder="Введіть назву події..."
                     onChange={handleChange}
                 />
-            }                   
+            }
+            <button  type="button" className={styles.delete_button} >                
+                <IconDelete aria-label={'icon-delete'}/>
+            </button>
         </form>               
     ) 
 }

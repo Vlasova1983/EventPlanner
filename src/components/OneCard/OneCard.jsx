@@ -1,9 +1,7 @@
-import styles from './OneCard.module.css';
-
+import { Link, useNavigate} from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { useLang } from '../../hooks/useLang';
+import styles from './OneCard.module.css';
 
 const getBgColor = variant => {
   switch (variant) {
@@ -42,7 +40,7 @@ const OneCard = ({ event, onDelete }) => {
                     < h2 className={styles.title}>{item.title}</h2 >
                     <div className={styles.card}>
                         <div className={styles.imgConteiner}>
-                            <img className={styles.image} src={item.url} alt={"Event"} width={'100%'} height={'100%'} />
+                            <img className={styles.image} src={item.url} alt={"Event"} width={'100%'} height={'100%'} loading={'lazy'}/>
                         </div>
                         <div className={styles.conteinerText}>
                             <p className={styles.description}>{item.description}</p>
@@ -64,8 +62,8 @@ const OneCard = ({ event, onDelete }) => {
                                 }
                             </Link>
                             {lang === 'en' ?
-                                <button className={styles.deleteButton} onClick={onClickDelete}>Delete event</button> :
-                                <button className={styles.deleteButton} onClick={onClickDelete}>Видалити подію</button>
+                                <button className={styles.deleteButton}  type="button" onClick={onClickDelete}>Delete event</button> :
+                                <button className={styles.deleteButton}   type="button" onClick={onClickDelete}>Видалити подію</button>
                             }
                         </div>
                     </div>

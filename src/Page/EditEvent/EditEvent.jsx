@@ -1,13 +1,13 @@
-import styles from "./EditEvent.module.css";
 import { PropTypes } from 'prop-types';
+import { useLang } from '../../hooks/useLang';
 import BackButton from "../../components/BackButton/BackButton";
 import EditForm from '../../components/EditForm/EditForm';
-import { useLang } from '../../hooks/useLang';
+import styles from "./EditEvent.module.css";
 
 const EditEvent = ({ events, editEvent }) => {  
      const {lang} = useLang();
     return(
-        <div className={styles.conteiner}>
+        <section className={styles.conteiner}>
             <BackButton />            
             <div className={styles.conteinerPage}>                
                 <div>
@@ -20,7 +20,7 @@ const EditEvent = ({ events, editEvent }) => {
                     </div>
                 </div>
             </div>
-        </div>        
+        </section>        
     )
 }
 export default EditEvent;

@@ -1,18 +1,23 @@
-import styles from '../Layout/Layout.module.css';
+import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
+import { useLang } from '../../hooks/useLang';
 import SearchForm from '../SearchForm/SearchForm';
 import ChangeLanguage from '../ChangeLanguage/ChangeLanguage';
-import { useLang } from '../../hooks/useLang';
+import styles from '../Layout/Layout.module.css';
 
 const Layout = ({ children, onFilter }) => {
      const {lang} = useLang();
     return (      
         <>
-           <div className={styles.layoutConteiner}>
+           <header className={styles.layoutConteiner}>
                 <div className={styles.box1}>
-                    {lang === 'en' ?
-                        <h1 className={styles.title}>Event Planner</h1> :
-                        <h1 className={styles.title}>Планувальник подій</h1>
+                    {lang === 'en' ?                       
+                        <Link>
+                            <span className={styles.title}>Event Planner</span>
+                        </Link> :
+                        <Link>
+                            <span className={styles.title}>Планувальник подій</span>
+                        </Link>                        
                     }   
                 </div>
                 <div className={styles.box2}>
@@ -21,8 +26,8 @@ const Layout = ({ children, onFilter }) => {
                 <div className={styles.box3}>               
                     <ChangeLanguage />                                          
                 </div>
-            </div>             
-            <div >{children}</div>             
+            </header>             
+            <main>{children}</main>             
         </>                
     ) 
 }
@@ -30,5 +35,6 @@ const Layout = ({ children, onFilter }) => {
 export default Layout;
 
 Layout.propTypes = {   
-    onFilter:PropTypes.func
+    onFilter: PropTypes.func,
+    children:PropTypes.object
 }

@@ -1,13 +1,13 @@
-import styles from './AddEvent.module.css';
 import { PropTypes } from 'prop-types';
+import { useLang } from '../../hooks/useLang';
 import BackButton from '../../components/BackButton/BackButton';
 import AddForm from '../../components/AddForm/AddForm';
-import { useLang } from '../../hooks/useLang';
+import styles from './AddEvent.module.css';
 
 const AddEvent = ({ addEvent }) => {  
     const {lang} = useLang();
     return (
-       <div className={styles.conteiner}> 
+       <section className={styles.conteiner}> 
             <BackButton/> 
             <div className={styles.conteinerPage}>                
                 <div>
@@ -20,7 +20,7 @@ const AddEvent = ({ addEvent }) => {
                     </div>
                 </div>
             </div>
-       </div>         
+       </section>         
     );   
 }
  

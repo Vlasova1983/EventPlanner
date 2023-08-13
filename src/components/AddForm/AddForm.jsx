@@ -1,8 +1,9 @@
-import styles from './AddForm.module.css';
-import { PropTypes } from 'prop-types';
-import {useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
+import styles from './AddForm.module.css';
+
 
 const AddForm = ({ addEvent }) => {
     const {lang} = useLang();

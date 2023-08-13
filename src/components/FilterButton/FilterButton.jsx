@@ -1,8 +1,8 @@
-import styles  from '../FilterButton/FilterButton.module.css';
-import { PropTypes } from 'prop-types';
 import Icon from '@mdi/react';
 import { mdiFilterOutline } from '@mdi/js';
+import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
+import styles from '../FilterButton/FilterButton.module.css';
 
 const FilterButton = ({onFilter}) => {
  const { lang} = useLang();
@@ -15,12 +15,12 @@ const FilterButton = ({onFilter}) => {
 
     return ( 
         <div className={styles.dropdown}>
-            <button className={styles.sortButton} >
+            <button className={styles.sortButton}  type="button">
                 {lang === 'en' ?
                     <p className={styles.sortButtonText}>Category</p> :
                     <p className={styles.sortButtonText}>Категорія</p>
                 }
-                <Icon className={styles.iconButton} path={mdiFilterOutline} size={1} />
+                <Icon className={styles.iconButton} path={mdiFilterOutline} size={1} aria-label={'icon-filter'}/>
             </button>
             {lang === 'en' ?
                 <div className={styles.dropdownContent}>

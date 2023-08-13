@@ -1,10 +1,9 @@
-import styles  from './BackButton.module.css';
+import { useParams, useNavigate} from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiArrowLeft } from '@mdi/js';
-import { useNavigate } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { useParams } from 'react-router-dom';
 import { useLang } from '../../hooks/useLang';
+import styles from './BackButton.module.css';
 
 const getRandomID = () => {
   return `${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -25,10 +24,8 @@ const BackButton = ({ onBack }) => {
            navigate(-1); 
         }        
     }
-
-
     return (       
-        <button onClick={goBack} className={styles.backButton}>
+        <button onClick={goBack} type="button" className={styles.backButton}>
             <Icon path={mdiArrowLeft} size={1} />
             {lang === 'en' ?
                 <p className={styles.backButtonText}>Back</p> :

@@ -11,16 +11,16 @@
     font-size: 16px;
     line-height: 24px;
     cursor: pointer;
+    transition:  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),background 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .iconButton{
     color: white; 
   }
 
-  .addButton:hover ,.addButton:focus {
-    color: white;  
-     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-   
+  .addButton:hover ,.addButton:focus { 
+    background: rgba(98, 67, 255, 1);
+    box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);   
   }
 
 

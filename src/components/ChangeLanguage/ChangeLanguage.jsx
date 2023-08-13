@@ -1,7 +1,7 @@
-import styles  from '../ChangeLanguage/ChangeLanguage.module.css';
 import Icon from '@mdi/react';
 import { mdiChevronDown } from '@mdi/js';
 import { useLang } from '../../hooks/useLang';
+import styles from '../ChangeLanguage/ChangeLanguage.module.css';
 
 const ChangeLanguage = () => {
     const { lang, setLang } = useLang();
@@ -17,12 +17,12 @@ const ChangeLanguage = () => {
 
 
     return (          
-        <button className={styles.ChangeLanguageButton} to="event" onClick={handleLang}>
+        <button className={styles.ChangeLanguageButton} to="event"  type="button" onClick={handleLang}>
             {lang === 'en' ?
                 <p className={styles.addButtonText}>UK</p> :
                 <p className={styles.addButtonText}>EN</p>
             }
-            <Icon path={mdiChevronDown} size={1} color={'#3F3F3F'} />
+            <Icon path={mdiChevronDown} size={1} color={'#3F3F3F'} aria-label={'icon-arrow-down'} />
         </button>                    
     )
 }

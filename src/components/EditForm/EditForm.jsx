@@ -1,10 +1,8 @@
-import styles from './EditForm.module.css';
-import { PropTypes } from 'prop-types';
+import { useNavigate,useParams } from 'react-router-dom';
 import {useState} from "react";
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
-
+import styles from './EditForm.module.css';
 
 const EditForm = ({ events, editEvent }) => {
     const {lang} = useLang();

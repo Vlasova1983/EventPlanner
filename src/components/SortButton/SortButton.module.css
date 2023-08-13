@@ -13,9 +13,16 @@
   line-height: 24px;
   border: none;
   outline: none;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }  
-   
+ 
+.sortButton:hover,
+.sortButton:focus {
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+}
+
+
 .dropdown { 
   display: inline-block;
 }    
@@ -44,8 +51,10 @@
   line-height: 14px;
   border-bottom: 1px solid #ACA7C3;
   outline: none;
-  cursor: pointer;
   text-decoration: none; 
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  
 }
 
 

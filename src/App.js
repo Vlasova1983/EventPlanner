@@ -1,14 +1,13 @@
-import { Suspense } from 'react';
+import { Suspense, useState,useEffect,lazy} from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import {useState,useEffect} from "react";
-import AllEvent from "./Page/AllEvent/AllEvent";
-import AddEvent from "./Page/AddEvent/AddEvent";
-import OneEvent from "./Page/OneEvent/OneEvent";
-import Layout from "./components/Layout/Layout";
-import EditEvent from './Page/EditEvent/EditEvent';
+import { useLang } from './hooks/useLang';
 import data from "./data/data.json";
 
-import { useLang } from './hooks/useLang';
+const AllEvent = lazy(() => import('./Page/AllEvent/AllEvent'));
+const AddEvent= lazy(() => import('./Page/AddEvent/AddEvent'));
+const OneEvent = lazy(() => import('./Page/OneEvent/OneEvent'));
+const EditEvent = lazy(() => import('./Page/EditEvent/EditEvent'));
+const Layout = lazy(() => import('./components/Layout/Layout'));
 
 const getRandomID=()=> {
   return `${Math.floor(Math.random() * 16777215).toString(16)}`;
