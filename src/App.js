@@ -109,7 +109,7 @@ const App = () => {
   }
   
   return(
-    <BrowserRouter >    
+    <BrowserRouter  basename="EventPlanner">    
       <Suspense >
         < Layout onFilter={handleFilter} >        
           <Routes>   
