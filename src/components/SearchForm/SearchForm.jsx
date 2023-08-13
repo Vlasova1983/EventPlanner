@@ -21,8 +21,7 @@ const SearchForm = ({ onFilter }) => {
         event.preventDefault();
         onFilter('');                       
         setIsValue('');                      
-    }; 
-    
+    };     
 
     return (       
         <form className={styles.form} onSubmit={handleSubmit}>                    
