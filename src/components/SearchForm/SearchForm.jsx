@@ -5,8 +5,6 @@ import { ReactComponent as IconSearch } from './search.svg';
 import { ReactComponent as IconDelete } from './cross-small.svg';
 import styles from '../SearchForm/SearchForm.module.css';
 
-
-
 const SearchForm = ({ onFilter }) => {
     const {lang} = useLang();
     const [value,setIsValue] = useState('');    
