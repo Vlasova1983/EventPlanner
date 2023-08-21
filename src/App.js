@@ -1,7 +1,9 @@
 import { Suspense, useState,useEffect,lazy} from 'react';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Notiflix from 'notiflix';
 import { useLang } from './hooks/useLang';
 import data from "./data/data.json";
+import './app.css';
 
 const AllEvent = lazy(() => import('./Page/AllEvent/AllEvent'));
 const AddEvent= lazy(() => import('./Page/AddEvent/AddEvent'));
@@ -16,6 +18,7 @@ const getRandomID=()=> {
 const App = () => {
   const {lang} = useLang();
   const url = "https://images.pexels.com/photos/461199/pexels-photo-461199.jpeg?dpr=2&h=480&w=640";
+  const url2 = "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2&h=480&w=640";
   const [test, setTest] = useState('');
   const [filter, setInFilter] = useState('');
   const [events, setEvents] = useState(() => {
@@ -26,19 +29,24 @@ const App = () => {
     localStorage.setItem('events', JSON.stringify(events));    
   }, [events,test,lang]);
   
-  const handleAdd = ({ title, description, date, time, location, category, priority }) => {
-    setEvents([...events, { id:getRandomID(),title, description, date, time, location, category, priority,url}]);
+  const handleAdd = (data) => {
+    const { title, description, date, time, location, category, priority } = data;
+    lang==='en'?Notiflix.Notify.success('Congratulations! You have successfully added an event.'):Notiflix.Notify.failure('Вітаємо!Ви успішно додали подію.');
+    setEvents([{ id:getRandomID(),title, description, date, time, location, category, priority,url,url2},...events]);
   }
 
-  const handleEditEvent = ({ title, description, date, time, location, category, priority,eventId}) => {
-    const newEvent = { title, description, date, time, location, category, priority, id: eventId,url:url };
+  const handleEditEvent = (data) => {
+    const { title, description, date, time, location, category, priority, eventId} = data;
+    const newEvent = { title, description, date, time, location, category, priority, id: eventId,url:url,url2:url2};
     const event = events.find((event) => event.id === eventId);   
     const index = events.indexOf(event);
-    events.splice(index, 1, newEvent);   
+    events.splice(index, 1, newEvent); 
+     lang==='en'?Notiflix.Notify.success('Congratulations! You have successfully edited the event.'):Notiflix.Notify.failure('Вітаємо!Ви успішно відредагували подію.');
     localStorage.setItem('events', JSON.stringify(events));    
   }
  
   const hendleDelete = (data) => { 
+    lang==='en'?Notiflix.Notify.success('Congratulations! You have successfully deleted the event'):Notiflix.Notify.failure('Вітаємо!Ви успішно видалили подію.');
     setEvents(events.filter((event)=>event.id !== data));     
   }  
 

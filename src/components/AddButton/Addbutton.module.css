@@ -4,8 +4,8 @@
     gap: 16px;
     padding: 16px;
     border-radius: 8px;
-    color: white; 
-    background-color: rgba(123, 97, 255, 1);
+    color: var(--background-color); 
+    background-color: var(--color-additional7);
  
     font-weight: 500;
     font-size: 16px;
@@ -15,11 +15,11 @@
   }
 
   .iconButton{
-    color: white; 
+    color: var(--background-color); 
   }
 
   .addButton:hover ,.addButton:focus { 
-    background: rgba(98, 67, 255, 1);
+    background: var(--color-additional);
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);   
   }
 

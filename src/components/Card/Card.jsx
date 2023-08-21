@@ -4,6 +4,7 @@ import { useLang } from '../../hooks/useLang';
 import styles from "./Card.module.css";
 
 const getColor = variant => {
+ 
   switch (variant) {
     case 'Medium':
       return "rgba(226, 163, 0, 1)";

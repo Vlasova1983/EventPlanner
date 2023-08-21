@@ -4,8 +4,21 @@ import BackButton from '../../components/BackButton/BackButton';
 import AddForm from '../../components/AddForm/AddForm';
 import styles from './AddEvent.module.css';
 
+
 const AddEvent = ({ addEvent }) => {  
-    const {lang} = useLang();
+    const { lang } = useLang();
+    const event = [{
+        title: '',
+        description: '',
+        location: '',
+        category: '',
+        priority: '',
+        date: '',
+        hour: '',
+        minutes: '',
+        timeOfDay:''
+    }]
+
     return (
        <section className={styles.conteiner}> 
             <BackButton/> 
@@ -16,7 +29,7 @@ const AddEvent = ({ addEvent }) => {
                         <h2 className={styles.title}>Додати нову подію</h2> 
                     }    
                     <div className={styles.card}>
-                       <AddForm  addEvent={addEvent}/> 
+                        <AddForm event={event} addEvent={addEvent}/>                      
                     </div>
                 </div>
             </div>

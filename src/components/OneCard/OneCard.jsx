@@ -39,8 +39,8 @@ const OneCard = ({ event, onDelete }) => {
                 < div >
                     < h2 className={styles.title}>{item.title}</h2 >
                     <div className={styles.card}>
-                        <div className={styles.imgConteiner}>
-                            <img className={styles.image} src={item.url} alt={"Event"} width={'100%'} height={'100%'} loading={'lazy'}/>
+                        <div className={styles.imgConteiner}>                           
+                            <img className={styles.image} srcSet={`${item.url} 1x, ${item.url2} 2x`} src={item.url} alt={"Event"} width={'100%'} height={'100%'} loading={'lazy'}/>
                         </div>
                         <div className={styles.conteinerText}>
                             <p className={styles.description}>{item.description}</p>

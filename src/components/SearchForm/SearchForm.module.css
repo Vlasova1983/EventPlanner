@@ -14,8 +14,8 @@
 
 .input {   
     display: inline-block;
-    background-color:white;
-    color:  rgba(123, 97, 255, 1);
+    background-color:var(--background-color);
+    color: var(--color-additional7);
     font-weight: 300;
     font-size: 14px;
     line-height: 14px;
@@ -38,17 +38,17 @@
     font-weight: 300;
     font-size: 14px;
     line-height: 14px;
-    color: rgba(136, 136, 136, 1);
+    color: var(--color-text);
 }
 
-.delete_button{
+.deleteButton{
     position: absolute;
     right: 12px;
     display: none;
 }
 
 
-.search_button {
+.searchButton {
     position: absolute;    
     left: 12px;  
     cursor: pointer;    

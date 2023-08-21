@@ -17,7 +17,7 @@ const ChangeLanguage = () => {
 
 
     return (          
-        <button className={styles.ChangeLanguageButton} to="event"  type="button" onClick={handleLang}>
+        <button className={styles.changeLanguageButton} to="event"  type="button" onClick={handleLang}>
             {lang === 'en' ?
                 <p className={styles.addButtonText}>UK</p> :
                 <p className={styles.addButtonText}>EN</p>

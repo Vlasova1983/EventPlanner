@@ -1,236 +1,388 @@
-.form{ 
-   padding: 40px 16px;    
+.form {
+    padding: 40px 16px;
+}
+.box1,
+.box2,
+.box3,
+.box4,
+.box5,
+.box7,
+.box6,
+.box8 {
+    position: relative;  
+    width: 100%;
+    padding-bottom: 15px;
 }
 
-.box1,.box2,.box3,.box4,.box5,.box6,.box8{
-   width: 100%;
-   color:rgba(123, 97, 255, 1);
-   font-weight: 400;
-   font-size: 16px;
-   left: 16px;
-   padding-bottom: 15px;
+.lable p {  
+    color: var(--color-additional7);
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
 }
-.lable p{   
-   margin-bottom: 8px;
+.lablePicture {
+    color: var(--color-text);
 }
-.input{
-   width: 216px;
-   height: 24px;
-   padding: 16px 12px;
-   
-   border-radius: 8px;
-   border: 1px solid rgba(172, 167, 195, 1);
-   cursor: text;
-   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  
+
+.errorLabel {
+    color: var(--color-border-error);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: right;
 }
-.input:hover,.input:focus{
-   border: 1px solid rgba(255, 43, 119, 1);
-   outline: none;
+
+.input {     
+    width: 216px;
+    height: 24px;
+    padding: 16px 12px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 8px;
+    color:var(--color-text-acsent);
+    border: 1px solid var(--color-text);
+    cursor: text;
+    transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.input:disabled::placeholder{
+    color:var(--color-text);
+}
+
+.input::placeholder { 
+     
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text-acsent);
+}
+
+.input:hover,
+.input:focus {
+    border: 1px solid var(--color-additional7);
+    outline: none;
 }
 
 
-.description{
-   width: 216px;
-   height: 104px;
-   padding: 16px 12px;
-   border-radius: 8px;
-   border: 1px solid rgba(172, 167, 195, 1);
-   cursor: text;
-   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);  
+.description {
+    width: 216px;
+    height: 104px;
+    padding: 16px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-text);
+    color:var(--color-text-acsent);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: text;
+    transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.description:hover,.description:focus{
-   border: 1px solid rgba(255, 43, 119, 1);
-   outline: none;
-}
-.button{ 
-   margin-top: 20px; 
-   padding: 16px 12px;
-   width: 240px;
-   border-radius: 8px;
-   color: white;
-   background: rgba(123, 97, 255, 1);
-   
-   font-weight: 500;
-   font-size: 16px;
-   line-height: 24px;
-   cursor: pointer;
-   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background 300ms cubic-bezier(0.4, 0, 0.2, 1);
+.description::placeholder {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text-acsent);
 }
 
- .button:hover,
- .button:focus {
-   background: rgba(98, 67, 255, 1);
-   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+.description:hover,
+.description:focus {
+    border: 1px solid var(--color-additional7);
+    outline: none;
+}
+
+
+.crossButton {
+    position: absolute;
+    z-index: 101;
+    right: 0;
+    top:40px;   
+}
+
+.iconButton {
+    stroke:var(--color-additional7);
+}
+.errorIcon {    
+    stroke: var(--color-border-error);   
+}
+.iconPicture {
+    stroke:var(--color-text);
+}
+
+
+.buttonSubmit {
+    margin-top: 20px;
+    padding: 16px 12px;
+    width: 240px;
+    border-radius: 8px;
+    color: var(--background-color);
+    background: var(--color-additional7);
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.buttonSubmit:hover,
+.buttonSubmit:focus {
+    background: var(--color-additional);
+    box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+}
+.errorInput {
+    border-color: var(--color-border-error);
+}
+
+.conteinerCalendar{    
+    z-index: 102;
+    position: absolute;   
+    margin-top: 8px;
+    width: 200px;   
+    border-radius: 11px;
+    text-transform: capitalize;
+    box-shadow: 0px 0px 14px 0px #00000012;
+    background-color: var(--background-color);
+    padding: 20px;
+    border: 1px solid var(--background-color);
+}
+.conteinerButton {
+    display: flex;
+    justify-content: right;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+ .canselButton {    
+     color: var(--color-additional7);
+     border: 1px solid var(--color-additional7);
+     border-radius: 4px;
+     padding: 8px 16px;
+     font-weight: 500;
+     font-size: 12px;
+     line-height: 16px;
+     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+         background 300ms cubic-bezier(0.4, 0, 0.2, 1),
+         color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+     cursor: pointer;
  }
 
- @media (min-width: 768px) and (max-width: 1279px) {
-    .form{
-      padding: 40px 24px;     
+ .chooseButton {
+     color: var(--background-color);
+     background-color: var(--color-additional7);
+     padding: 8px 16px;
+     border-radius: 4px;
+     font-weight: 500;
+     font-size: 12px;
+     line-height: 26px;
+     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background 300ms cubic-bezier(0.4, 0, 0.2, 1);
+     cursor: pointer;
+ }
+
+ .chooseButton:hover,
+ .chooseButton:focus {
+    background: var(--color-additional);
+    box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+ }
+
+ .canselButton:hover,
+ .canselButton:focus {
+    color: var(--background-color);
+    background-color: var(--color-additional7);
+     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+ }
+
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .form {
+        padding: 40px 24px;        
     }
+
     .flex {
-      width: 688px;
-      height: 656px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(6, 1fr);     
-   }
+        width: 688px;        
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+    .conteinerCalendar {
+        width: 268px;
+    }
+    .box1 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
 
-   .box1{
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 1;
-      grid-row-end: 1;
-   }
-   .box2{
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 2;
-      grid-row-end: 4;
-   }
-   .box3{
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 4;
-      grid-row-end: 4;
-   }
-   .box4{
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 5;
-      grid-row-end: 5;
-   }
-   .box5{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 1;
-      grid-row-end: 1;
-   }
-   .box6{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 2;
-      grid-row-end: 2;
-   }
+    .box2 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        grid-row-end: 4;
+    }
 
-   .box7{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 3;
-      grid-row-end: 3;
-   }
-   .box8{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 4;
-      grid-row-end: 4;
-   }
-   .flex div{
-      display: flex;
-      flex-direction: column;
-      justify-content:center;
-   }
-   .boxButton{
-      display: flex;
-      justify-content: right;
-      margin-top: -130px;
-   }
-   .button{
-      width: 193px;
-   }
-   .input{
-      width: 284px;     
-   }
-   
-   .description{
-      width: 284px;
-   }
- }
+    .box3 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 4;
+        grid-row-end: 4;
+    }
 
- @media (min-width: 1280px) {
-   .form {
-      padding: 40px;
-   }
+    .box4 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 5;
+        grid-row-end: 5;
+    }
 
-   .flex {
-      width: 1200px;
-      height: 450px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 1fr);     
-   }
-   .flex div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-   }
-   .box1{
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 1;
-      grid-row-end: 1;
-   }
-   .box2{
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 2;
-      grid-row-end: 4;
-   }
-   .box3{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 1;
-      grid-row-end: 1;
-   }
-   .box4{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 2;
-      grid-row-end: 2;
-   }
-   .box5{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 3;
-      grid-row-end: 3;
-   }
-   .box6{
-      grid-column-start: 3;
-      grid-column-end: 3;
-      grid-row-start: 1;
-      grid-row-end: 1;
-   }
+    .box5 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
 
-   .box7{
-      grid-column-start: 3;
-      grid-column-end: 3;
-      grid-row-start: 2;
-      grid-row-end: 2;
-   }
-   .box8{
-      grid-column-start: 3;
-      grid-column-end: 3;
-      grid-row-start: 3;
-      grid-row-end: 3;
-   }
+    .box6 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
 
-   .boxButton {
-      display: flex;
-      justify-content: right;
-      margin-top: -100px;     
-   }
+    .box7 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 3;
+    }
 
-   .button {
-      width: 193px;
-   }
-   .input {
-      width: 348px;
-   }
+    .box8 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 4;
+    }  
 
-  
-   .description {
-      width: 348px;
-      height: 156px;
-   }
- }
+    .boxButton {
+        display: flex;
+        justify-content: right;
+        margin-top: -140px;
+    }
+
+    .buttonSubmit {
+        width: 193px;
+    }
+
+    .input {
+        width: 284px;
+    }
+
+    .description {
+        width: 284px;
+    }
+
+    
+    .errorLabel {   
+        margin-right: 40px;          
+    }
+
+    .crossButton {
+        right: 40px;      
+    }   
+    
+}
+
+@media (min-width: 1280px) {
+    .form {
+        padding: 40px;
+    }
+
+    .flex {
+        width: 1200px;
+        height: 450px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }    
+    .conteinerCalendar {
+        width: 328px;
+    }
+    .box1 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+    .box2 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        grid-row-end: 4;
+    }
+    .box3 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+    .box4 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
+    .box5 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 3;
+    }
+    .box6 {
+        grid-column-start: 3;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+    .box7 {
+        grid-column-start: 3;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
+    .box8 {
+        grid-column-start: 3;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 3;
+    }
+    .boxButton {
+        display: flex;
+        justify-content: right;
+        margin-top: -100px;
+    }
+    .buttonSubmit {
+        width: 193px;
+    }
+    .input {
+        width: 348px;
+    }
+    .description {
+        width: 348px;
+        height: 156px;
+    }
+    .errorLabel {
+        margin-right: 40px;
+    } 
+    .crossButton {
+        right: 40px;       
+    }
+    
+}
+
+
+
+
+

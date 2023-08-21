@@ -1,12 +1,12 @@
-.ChangeLanguageButton{
+.changeLanguageButton{
     display: flex;
     align-items: center;
     gap: 4px;
     padding: 12px;  
 
-    color:rgba(63, 63, 63, 1);
+    color:var(--color-text-acsent);
    
-    background-color: white;
+    background-color: var(--background-color);
     border-radius: 8px;
 
     font-weight: 500;
@@ -17,7 +17,7 @@
 }
 
 
-.ChangeLanguageButton:hover ,.ChangeLanguageButtonn:focus {
+.changeLanguageButton:hover ,.changeLanguageButtonn:focus {
    
     box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);    
 }

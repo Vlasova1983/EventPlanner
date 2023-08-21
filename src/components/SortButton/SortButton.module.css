@@ -4,9 +4,9 @@
   gap: 16px;
   padding: 16px;
   border-radius: 8px;
-  color:#7B61FF;
-  stroke: #7B61FF;
-  background-color: white;
+  color:var(--color-additional7);
+  stroke: var(--color-additional7);
+  background-color: var(--background-color);
  
   font-weight: 500;
   font-size: 16px;
@@ -42,14 +42,14 @@
   align-items: center;
   padding: 8px 16px; 
   width: 123px;
-  color:#ACA7C3;
-  stroke:#ACA7C3;
-  background-color: white;
+  color:var(--color-tex);
+  stroke:var(--color-tex);
+  background-color: var(--background-color);
   border-radius: 8px;
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
-  border-bottom: 1px solid #ACA7C3;
+  border-bottom: 1px solid var(--color-tex);
   outline: none;
   text-decoration: none; 
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -60,8 +60,8 @@
 
 .dropdownContent button:hover,.dropdownContent button:focus {
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-  color: rgba(63, 63, 63, 1);
-  stroke: rgba(63, 63, 63, 1);
+  color: var(--color-text-acsen);
+  stroke: var(--color-text-acsen);
 }
 
  
@@ -79,8 +79,8 @@
 .dropdown:focus .sortButton
 {
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-  color: rgba(63, 63, 63, 1);
-  stroke: rgba(63, 63, 63, 1);
+  color: var(--color-text-acsen);
+  stroke: var(--color-text-acsen);
 }
 
 

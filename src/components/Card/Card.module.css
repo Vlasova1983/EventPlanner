@@ -22,30 +22,29 @@
 
 .categoria{
   padding: 6px 12px;
-  background-color: white;
+  background-color: var(--background-color);
   border-radius: 8px;
-  color:rgba(123, 97, 255, 1);
+  color:var(--color-additional7);
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
 }
 .priority{
   padding: 6px 12px;
-  background-color: white;
+  background-color:var(--background-color);
   border-radius: 8px;
  
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-}
-  
+} 
 
   
 .dateConteiner{
   display: flex;
   justify-content: space-between;
   padding: 0 4px;
-  color: rgba(123, 97, 255, 1);
+  color: var(--color-additional7);
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
@@ -56,7 +55,7 @@
   margin: 16px 0;
   padding: 0 4px;
   
-  color: rgba(28, 27, 31, 1);
+  color: var(--color-text-acsent);
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -81,9 +80,9 @@
 
 .linkCard{  
   padding: 10px 24px; 
-  color: white;  
+  color: var(--background-color);  
   
-  background-color: rgba(123, 97, 255, 1);
+  background-color:var(--color-additional7);
   border-radius: 8px;
   font-weight: 500;
   font-size: 14px;
@@ -93,7 +92,7 @@
 }
 
 .linkCard:hover ,.linkCard:focus {
-  background: rgba(98, 67, 255, 1);
+  background: var(--color-additional7);
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 }
 
