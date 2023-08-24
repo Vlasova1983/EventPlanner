@@ -1,27 +1,10 @@
 import { Link } from 'react-router-dom'; 
 import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
+import { getBgColor } from '../../utils/helpers/color/getBgColor';
 import styles from "./Card.module.css";
 
-const getColor = variant => {
- 
-  switch (variant) {
-    case 'Medium':
-      return "rgba(226, 163, 0, 1)";
-    case 'Високий':
-      return "rgba(226, 163, 0, 1)";
-    case "Hight":
-      return "rgba(255, 43, 119, 1)";
-    case "Середній":
-      return "rgba(255, 43, 119, 1)";
-    case "Low":
-      return "rgba(107, 212, 117, 1)"; 
-    case "Низький":
-      return "rgba(107, 212, 117, 1)";   
-    default:
-      throw new Error(`Unsupported variant prop value - ${variant}`);
-  }
-};
+
 
 const getBackgColor = (url) => {
   return `linear-gradient(to top, #FFFFFF 40%, rgba(255, 255, 255, 0.8) 50%, transparent 45%),
@@ -36,7 +19,7 @@ const Card = ({ item }) => {
       <div className={styles.conteiner}> 
         <div className={styles.options}>
           <p className={styles.categoria}>{item.category}</p>
-          <p className={styles.priority} style={{color: getColor(item.priority) }}>{item.priority}</p>
+          <p className={styles.priority} style={{color: getBgColor(item.priority) }}>{item.priority}</p>
         </div> 
         <div className={styles.dateConteiner}>
           {lang === 'en' ?

@@ -19,7 +19,7 @@ const App = () => {
   const {lang} = useLang();
   const url = "https://images.pexels.com/photos/461199/pexels-photo-461199.jpeg?dpr=2&h=480&w=640";
   const url2 = "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2&h=480&w=640";
-  const [test, setTest] = useState('');
+  const [jumpBack, setInJumpBack] = useState('');
   const [filter, setInFilter] = useState('');
   const [events, setEvents] = useState(() => {
     return JSON.parse(localStorage.getItem('events')) || data;
@@ -27,16 +27,16 @@ const App = () => {
  
   useEffect(() => {    
     localStorage.setItem('events', JSON.stringify(events));    
-  }, [events,test,lang]);
+  }, [events,jumpBack,lang]);
   
-  const handleAdd = (data) => {
-    const { title, description, date, time, location, category, priority } = data;
+  const handleAdd = (data) => {   
+    const { title, description, date, time,location, category, priority } = data;    
     lang==='en'?Notiflix.Notify.success('Congratulations! You have successfully added an event.'):Notiflix.Notify.failure('Вітаємо!Ви успішно додали подію.');
     setEvents([{ id:getRandomID(),title, description, date, time, location, category, priority,url,url2},...events]);
   }
 
-  const handleEditEvent = (data) => {
-    const { title, description, date, time, location, category, priority, eventId} = data;
+  const handleEditEvent = (data,eventId) => {  
+    const { title, description, date, time, location, category, priority} = data;
     const newEvent = { title, description, date, time, location, category, priority, id: eventId,url:url,url2:url2};
     const event = events.find((event) => event.id === eventId);   
     const index = events.indexOf(event);
@@ -123,7 +123,7 @@ const App = () => {
           <Routes>   
             <Route path="" element={<AllEvent events={getFilter()} onSort={hendleSort} onFilter={handleFilter} />} />
             <Route path="event" element={<AddEvent addEvent={handleAdd}/>}/>    
-            <Route path="event/:eventId" element={<OneEvent onDelete={hendleDelete} onBack={setTest} events={events}/>}/>
+            <Route path="event/:eventId" element={<OneEvent onDelete={hendleDelete} onBack={setInJumpBack} events={events}/>}/>
             <Route path="event/:eventId/edit" element={<EditEvent editEvent={handleEditEvent}  events={events}/>}/>               
           </Routes>       
         </Layout> 

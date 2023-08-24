@@ -39,10 +39,10 @@
 }
 
 .item_box{
-    height: 160px;   
-    overflow: scroll;
-   
+    height: 170px;   
+    overflow: scroll;   
 }
+
 ::-webkit-scrollbar {
     width: 0px;
     background: rgba(255, 255, 255, 0.0);

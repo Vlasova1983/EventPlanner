@@ -12,7 +12,7 @@ const getRandomID = () => {
 
 const BackButton = ({ onBack }) => {
     const { lang } = useLang();
-     const { eventId } = useParams();
+    const { eventId } = useParams();
     const navigate = useNavigate();
     const currentUrl = window.location.pathname;
 
@@ -24,6 +24,7 @@ const BackButton = ({ onBack }) => {
            navigate(-1); 
         }        
     }
+
     return (       
         <button onClick={goBack} type="button" className={styles.backButton}>
             <Icon path={mdiArrowLeft} size={1} />

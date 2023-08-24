@@ -25,7 +25,7 @@ const SearchForm = ({ onFilter }) => {
     return (       
         <form className={styles.form} onSubmit={handleSubmit}>                    
             <button  type="submit" className={styles.searchButton} >                
-                <IconSearch aria-label={'icon-search'}/>
+                <IconSearch className={styles.icon} aria-label={'icon-search'}/>
             </button>
             {lang === 'en' ?
                 <input
@@ -48,7 +48,7 @@ const SearchForm = ({ onFilter }) => {
                 />
             }
             <button  type="button" onClick={onClear} className={styles.deleteButton} id='search'>                
-                <IconDelete aria-label={'icon-cross'} id='search'/>
+                <IconDelete className={styles.icon} aria-label={'icon-cross'} id='search'/>
             </button>
         </form>               
     ) 

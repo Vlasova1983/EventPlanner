@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { checkIsToday,  checkDateIsEqual} from '../../utils/helpers/date';
 import { useCalendar } from './hooks/useCalendar';
 
