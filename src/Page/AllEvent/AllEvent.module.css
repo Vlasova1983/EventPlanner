@@ -11,8 +11,7 @@
 }
 
 .titel{
- display: none;
-}
+ display: none;}
 
 
 
@@ -21,9 +20,12 @@
   gap: 24px;
   justify-content: center;
   
-  margin-top: 40px;
+  margin:40px 0;
 }
-
+.conteinerPagination{
+  display: flex;  
+  justify-content:center; 
+}
 
 @media (min-width: 768px) and (max-width: 1279px){
   .conteiner{
@@ -40,8 +42,10 @@
   .titel{
     display: block;
     margin-top: 40px;
-   }
-
+  }
+  .conteinerPagination{  
+    justify-content: center;
+  }
 }
 
 
@@ -70,5 +74,8 @@
   }
   .titel{
     display: block;
-   }
+  }
+  .conteinerPagination{  
+    justify-content: right;
+  }
 }

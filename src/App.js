@@ -15,16 +15,39 @@ const getRandomID=()=> {
   return `${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
+const makePaginatorArray  = (data)=>{
+  const array=[];
+  for(let i=1;i<=data;i++){
+    array.push(i);
+  }
+  return array
+}
+
 const App = () => {
   const {lang} = useLang();
+    
   const url = "https://images.pexels.com/photos/461199/pexels-photo-461199.jpeg?dpr=2&h=480&w=640";
   const url2 = "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2&h=480&w=640";
   const [jumpBack, setInJumpBack] = useState('');
+  const[isActivPage,setInActivPage]=useState(1);
   const [filter, setInFilter] = useState('');
   const [events, setEvents] = useState(() => {
     return JSON.parse(localStorage.getItem('events')) || data;
   })
- 
+  const elements=events.length;
+  const elementPage=4;
+  const array=makePaginatorArray( elements/elementPage);  
+  
+  const eventsOfPage =()=>{   
+    const array=[];
+    for(let i=0;i<elements;i++){
+      if(i>=elementPage*(isActivPage-1) && i<elementPage*isActivPage){
+        array.push(events[i])
+      }
+    }
+    return array
+  } 
+
   useEffect(() => {    
     localStorage.setItem('events', JSON.stringify(events));    
   }, [events,jumpBack,lang]);
@@ -110,9 +133,9 @@ const App = () => {
       filter === 'Workshop' ||
       filter === 'Party' ||
       filter === 'Sport'
-    ){return events.filter((event) => event.category.includes(filter));
+    ){return  eventsOfPage().filter((event) => event.category.includes(filter));
     } else {
-      return events.filter((event) => event.title.toLowerCase().includes(filter));
+      return eventsOfPage().filter((event) => event.title.toLowerCase().includes(filter));
     }    
   }
   
@@ -121,7 +144,7 @@ const App = () => {
       <Suspense >
         < Layout onFilter={handleFilter} >        
           <Routes>   
-            <Route path="" element={<AllEvent events={getFilter()} onSort={hendleSort} onFilter={handleFilter} />} />
+            <Route path="" element={<AllEvent events={getFilter()} onSort={hendleSort} setInActivPage={setInActivPage} array={array} isActivPage={isActivPage} onFilter={handleFilter} />} />
             <Route path="event" element={<AddEvent addEvent={handleAdd}/>}/>    
             <Route path="event/:eventId" element={<OneEvent onDelete={hendleDelete} onBack={setInJumpBack} events={events}/>}/>
             <Route path="event/:eventId/edit" element={<EditEvent editEvent={handleEditEvent}  events={events}/>}/>               
