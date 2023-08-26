@@ -1,5 +1,4 @@
 import { PropTypes } from 'prop-types';
-
 import { ReactComponent as IconLeft } from "./chevron left.svg";
 import { ReactComponent as IconRight } from "./chevron right.svg";
 import { ReactComponent as IconSquare } from "./square.svg";
