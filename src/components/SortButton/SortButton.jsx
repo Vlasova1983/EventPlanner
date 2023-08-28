@@ -7,8 +7,8 @@ import styles from '../SortButton/SortButton.module.css';
 
 const SortButton = ({ onSort }) => {
     const { lang } = useLang();
-    const onClickSort = (evt) => {
-        evt.preventDefault(); 
+
+    const onClickSort = (evt) => {       
         const { name, id } = evt.target;       
         onSort({name, id})
     }

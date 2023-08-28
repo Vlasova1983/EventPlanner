@@ -1,4 +1,4 @@
-export const getBgColor = variant => {
+export const getColor = variant => {
     switch (variant) {
         case 'Medium':
           return "rgba(226, 163, 0, 1)";

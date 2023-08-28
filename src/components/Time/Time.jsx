@@ -1,6 +1,10 @@
 import { useState,useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
+import { listHour } from '../../data/constants';
+import { listMinute } from '../../data/constants';
+import { timeOfDayEn } from '../../data/constants';
+import { timeOfDayUa} from '../../data/constants';
 import styles from "./Time.module.css";
 
 
@@ -10,15 +14,12 @@ const Time = ({ onClick }) => {
         hour:'--',
         minutes:'--',
         timeOfDay:'--'
-    });   
-    const listHour = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-    const listMinute = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
-    const timeOfDayEn = ['PM', 'AM'];
-    const timeOfDayUa = ['До обіду', 'Після обіду'];  
+    });  
     
     useEffect(() => {    
         onClick('time',`${time.hour} : ${time.minutes}  ${time.timeOfDay}`);  
-      }, [time]);
+    }, [time,onClick]);
+
 
     const onSelectTime = (e) => {  
         const { id, innerText } = e.target;           

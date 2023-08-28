@@ -2,10 +2,14 @@ import { useNavigate , useParams} from 'react-router-dom';
 import { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { useFormik } from 'formik';
+import { formatDate } from '../../utils/helpers/date/';
+import { listCategoryEn } from '../../data/constants';
+import { listPriorityEn } from '../../data/constants';
+import { listCategoryUa } from '../../data/constants';
+import { listPriorityUa } from '../../data/constants';
 import { useLang } from '../../hooks/useLang';
 import SelectList from '../SelectList/SelectList';
 import { Calendar } from '../Calendar/Calendar';
-import { formatDate } from '../../utils/helpers/date/';
 import Time from '../Time/Time';
 import AddFormSchema from './AddFormSchema';
 import { ReactComponent as IconСhoice } from "./chevron-down-small.svg";
@@ -14,94 +18,90 @@ import { ReactComponent as IconCross } from './cross-small.svg';
 import styles from './EditForm.module.css';
 
 const EditForm = ({ events, editEvent }) => {  
-    const {lang} = useLang();
-    const navigate = useNavigate();
-    const { eventId } = useParams();
-    const event = events.filter((item) => item.id.includes(eventId));
-    const item = event[0];
-    const [isShowDate, setIsShowDate] = useState(false);
-    const [isShowTime, setIsShowTime] = useState(false);
-    const [isShowListCategory, setIsShowCategory] = useState(false);
-    const [isShowListPriority, setIsShowPriority] = useState(false);
-    const [selectedDate, setSelectedDay] = useState(new Date());
-    const listCategoryEn = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport'];
-    const listPriorityEn = ['Hight', 'Medium', 'Low'];
-    const listCategoryUa=['Арт', 'Музика', 'Бізнес', 'Конференція', 'Майстерня', 'Вечірка', 'Спорт'];
-    const listPriorityUa=['Важлива', 'Середня', 'Низька'];
-
-
-    const onChangeInput = e => {    
-      const { name, value } = e.target;
-      formik.setFieldValue(name, value);    
-    }
+  const {lang} = useLang();
+  const navigate = useNavigate();
+  const { eventId } = useParams();
+  const event = events.filter((item) => item.id.includes(eventId));
+  const item = event[0];
+  const [isShowDate, setIsShowDate] = useState(false);
+  const [isShowTime, setIsShowTime] = useState(false);
+  const [isShowListCategory, setIsShowCategory] = useState(false);
+  const [isShowListPriority, setIsShowPriority] = useState(false);
+  const [selectedDate, setSelectedDay] = useState(new Date());
   
-    const onClearInput = (e) => {
-      const { id } = e.target;    
-      formik.setFieldValue(id, '');    
-    }
+  const onChangeInput = e => {    
+    const { name, value } = e.target;
+    formik.setFieldValue(name, value);    
+  }
   
-    const hendleShow = (e) => {   
-      switch (e){
-        case 'isShowDate':
-          if(isShowDate === false){
-            setIsShowDate(true);
-            lang === 'en'?formik.setFieldValue('date', 'Select Date'):formik.setFieldValue('date', 'Оберіть дату')
-          }else{
-            setIsShowDate(false)
-          }        
-          if(formik.values.date==='Select Date'||formik.values.date==='Оберіть дату'){
-            formik.setFieldValue('date', '')
-          }
-          break
-        case 'isShowTime':
-          isShowTime === false?setIsShowTime(true):setIsShowTime(false);                
-          break
-        case 'isShowListCategory':
-          if(isShowListCategory === false){
-            setIsShowCategory(true);
-            lang === 'en'?formik.setFieldValue('category', 'Select Category'):formik.setFieldValue('category', 'Оберіть категорію');
-          }else{
-            setIsShowCategory(false)
-          }         
-          break
-        case 'isShowListPriority':
-          if( isShowListPriority === false){
-            setIsShowPriority(true);
-            lang === 'en'?formik.setFieldValue('priority', 'Select Priority'):formik.setFieldValue('priority', 'Оберіть пріоритет');
-          }else{
-            setIsShowPriority(false)
-          }   
-          break      
-        default: throw new Error(`Unsupported variant prop value - ${e}`); 
-      }   
-    } 
+  const onClearInput = (e) => {
+    const { id } = e.target;    
+    formik.setFieldValue(id, '');    
+  }
   
-    const onSelect = (e) => {    
-      const { name, id } = e.target;   
-      switch (id) {
-        case 'date':
-          formik.setFieldValue('date', formatDate(selectedDate, 'DDD DD MMM YYYY'));       
-          break
-        case 'date_clear':
-          lang === 'en'?formik.setFieldValue('date', 'Select Date'):formik.setFieldValue('date', 'Оберіть дату');       
-          break      
-        case 'category':
-          formik.setFieldValue('category', name);       
-          break
-        case 'priority':
-          formik.setFieldValue('priority', name);       
-          break      
-        default:
-          throw new Error(`Unsupported variant prop value - ${id}`);
-      }    
-    }  
+  const hendleShow = (e) => {   
+    switch (e){
+      case 'isShowDate':
+        if(isShowDate === false){
+          setIsShowDate(true);
+          lang === 'en'?formik.setFieldValue('date', 'Select Date'):formik.setFieldValue('date', 'Оберіть дату')
+        }else{
+          setIsShowDate(false)
+        }        
+        if(formik.values.date==='Select Date'||formik.values.date==='Оберіть дату'){
+          formik.setFieldValue('date', '')
+        }
+        break
+      case 'isShowTime':
+        isShowTime === false?setIsShowTime(true):setIsShowTime(false);                
+        break
+      case 'isShowListCategory':
+        if(isShowListCategory === false){
+          setIsShowCategory(true);
+          lang === 'en'?formik.setFieldValue('category', 'Select Category'):formik.setFieldValue('category', 'Оберіть категорію');
+        }else{
+          setIsShowCategory(false)
+        }         
+        break
+      case 'isShowListPriority':
+        if( isShowListPriority === false){
+          setIsShowPriority(true);
+          lang === 'en'?formik.setFieldValue('priority', 'Select Priority'):formik.setFieldValue('priority', 'Оберіть пріоритет');
+        }else{
+          setIsShowPriority(false)
+        }   
+        break      
+      default: throw new Error(`Unsupported variant prop value - ${e}`); 
+    }   
+  } 
+  
+  const onSelect = (e) => {    
+    const { name, id } = e.target;   
+    switch (id) {
+      case 'date':
+        formik.setFieldValue('date', formatDate(selectedDate, 'DDD DD MMM YYYY'));       
+        break
+      case 'date_clear':
+        lang === 'en'?formik.setFieldValue('date', 'Select Date'):formik.setFieldValue('date', 'Оберіть дату');       
+        break      
+      case 'category':
+        formik.setFieldValue('category', name);       
+        break
+      case 'priority':
+        formik.setFieldValue('priority', name);       
+        break      
+      default:
+        throw new Error(`Unsupported variant prop value - ${id}`);
+    }    
+  }
+  
   const onSubmit = async (values) => {    
     editEvent(values,eventId);   
     navigate(-1);
   } 
   
   const formik = useFormik({    
-    initialValues: {
+      initialValues: {
       title: item.title,
       description: item.description,
       location: item.location,
@@ -112,7 +112,8 @@ const EditForm = ({ events, editEvent }) => {
     },
     validationSchema:AddFormSchema,
     onSubmit,
-  })  
+  })
+  
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>       
         <div className={styles.flex}>       
@@ -525,6 +526,6 @@ const EditForm = ({ events, editEvent }) => {
 export default EditForm;
 
 EditForm.propTypes = {
-    events: PropTypes.array,
-    editEvent:PropTypes.func
+  events: PropTypes.array,
+  editEvent:PropTypes.func
 }

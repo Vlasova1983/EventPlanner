@@ -1,14 +1,12 @@
-import { useParams } from 'react-router-dom';
+
 import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
 import BackButton from "../../components/BackButton/BackButton";
 import EditForm from '../../components/EditForm/EditForm';
 import styles from "./EditEvent.module.css";
 
-const EditEvent = ({ events, editEvent }) => {
-    const { eventId } = useParams();
-    const event = events.filter((item) => item.id.includes(eventId))
-     const {lang} = useLang();
+const EditEvent = ({ events, editEvent }) => {    
+    const {lang} = useLang();
     return(
         <section className={styles.conteiner}>
             <BackButton />            

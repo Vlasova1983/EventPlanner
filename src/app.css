@@ -1,13 +1,8 @@
-:root {
-   
+:root {   
     --color-text: #ACA7C3;
     --color-text-acsent:#3F3F3F;
     --color-border-error:#FF2B77;
     --color-additional: #6243FF;
     --color-additional7: #7B61FF;
-    --background-color: #FFFFFF;
-
-   
-    /* --images-arrow: url('../images/arrow.svg'); */
-   
+    --background-color: #FFFFFF;   
 }

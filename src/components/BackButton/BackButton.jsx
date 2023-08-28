@@ -1,14 +1,10 @@
-import { useParams, useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import Icon from '@mdi/react';
 import { mdiArrowLeft } from '@mdi/js';
-import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
+import { getRandomID } from '../../utils/helpers/createId/getRandomID';
 import styles from './BackButton.module.css';
-
-const getRandomID = () => {
-  return `${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
 
 const BackButton = ({ onBack }) => {
     const { lang } = useLang();

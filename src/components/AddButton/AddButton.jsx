@@ -5,8 +5,7 @@ import { useLang } from '../../hooks/useLang';
 import styles from '../AddButton/Addbutton.module.css';
 
 const AddButton = () => {
-    const { lang} = useLang();
-
+    const {lang} = useLang();
     return (       
         <Link  className={styles.addButton} to="event">                    
             <Icon path={mdiPlus} size={1} className={styles.iconButton} aria-label={'icon-add'}/>

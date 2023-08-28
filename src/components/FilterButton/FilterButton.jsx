@@ -5,13 +5,12 @@ import { useLang } from '../../hooks/useLang';
 import styles from '../FilterButton/FilterButton.module.css';
 
 const FilterButton = ({onFilter}) => {
- const { lang} = useLang();
-    const onClickFilter = (evt) => {
-        evt.preventDefault();       
+    const { lang } = useLang();
+    
+    const onClickFilter = (evt) => {             
         const { name } = evt.target; 
         onFilter(name);       
     }
-
 
     return ( 
         <div className={styles.dropdown}>

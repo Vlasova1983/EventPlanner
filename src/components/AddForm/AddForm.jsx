@@ -2,10 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { useFormik } from 'formik';
+import { formatDate } from '../../utils/helpers/date/';
+import { listCategoryEn } from '../../data/constants';
+import { listPriorityEn } from '../../data/constants';
+import { listCategoryUa } from '../../data/constants';
+import { listPriorityUa } from '../../data/constants';
 import { useLang } from '../../hooks/useLang';
 import SelectList from '../SelectList/SelectList';
 import { Calendar } from '../Calendar/Calendar';
-import { formatDate } from '../../utils/helpers/date/';
 import Time from '../Time/Time';
 import AddFormSchema from './AddFormSchema';
 import { ReactComponent as IconСhoice } from "./chevron-down-small.svg";
@@ -21,11 +25,7 @@ const AddForm = ({ addEvent}) => {
   const [isShowTime, setIsShowTime] = useState(false);
   const [isShowListCategory, setIsShowCategory] = useState(false);
   const [isShowListPriority, setIsShowPriority] = useState(false);
-  const [selectedDate, setSelectedDay] = useState(new Date());
-  const listCategoryEn = ['Art', 'Music', 'Business', 'Conference', 'Workshop', 'Party', 'Sport'];
-  const listPriorityEn = ['Hight', 'Medium', 'Low'];
-  const listCategoryUa=['Арт', 'Музика', 'Бізнес', 'Конференція', 'Майстерня', 'Вечірка', 'Спорт'];
-  const listPriorityUa=['Важлива', 'Середня', 'Низька'];
+  const [selectedDate, setSelectedDay] = useState(new Date());  
   
 
   const onChangeInput = e => {    
@@ -110,7 +110,7 @@ const AddForm = ({ addEvent}) => {
       time:''
     },
     validationSchema:AddFormSchema,
-    onSubmit,
+    onSubmit
   })  
 
   return (    

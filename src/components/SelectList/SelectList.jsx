@@ -1,9 +1,7 @@
 import { PropTypes } from 'prop-types';
-
 import styles from "./SelectList.module.css";
 
-const SelectList = ({ data,id, onSelect }) => {
-    
+const SelectList = ({ data,id, onSelect }) => {    
     return (
         <div className={styles.box} >
             {data.map (event=>(

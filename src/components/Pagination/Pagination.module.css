@@ -1,9 +1,7 @@
 .conteiner{
     display: flex;
     justify-content: space-between;   
-    align-items: center;
-    
-    gap: 20px;
+    align-items: center;   
     border-radius: 8px;
     box-shadow: 2px 4px 9px 0px #A68DAE47;
     background-color: var(--background-color);   
@@ -24,9 +22,7 @@
     font-style: 18px;
     line-height: 27px;
 } 
-.button:nth-child(4n) {
-   display: none;
-}
+
 .activButton{
     color: var(--color-additional7);
 }
@@ -41,17 +37,11 @@
 @media (min-width: 768px) and (max-width: 1279px) {
     .conteiner{       
         width: 688px;
-    } 
-    .button:nth-child(4n) {
-        display: block;
-    }    
+    }     
 }
 
 @media (min-width: 1280px) {
     .conteiner{       
         width: 588px;
-    } 
-    .button:nth-child(4n) {
-        display: block;
-    }    
+    }     
 }

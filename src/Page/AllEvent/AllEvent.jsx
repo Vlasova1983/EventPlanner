@@ -7,7 +7,7 @@ import SortButton from "../../components/SortButton/SortButton";
 import FilterButton from "../../components/FilterButton/FilterButton";
 import styles from '../AllEvent/AllEvent.module.css';
 
-const AllEvent = ({ events, onSort,array, onFilter,setInActivPage,isActivPage }) => { 
+const AllEvent = ({ events, onSort,arrayPage, onFilter,setInActivPage,isActivPage }) => { 
      const {lang} = useLang();
     return (
         <>
@@ -27,9 +27,16 @@ const AllEvent = ({ events, onSort,array, onFilter,setInActivPage,isActivPage })
                     {events.map (event=>(
                     <Card item={event}   key={event.id}/>))}   
                 </div>
-                <div className={styles.conteinerPagination}>
-                    <Pagination array={array} isActivPage={isActivPage} setInActivPage={setInActivPage}/>
-                </div>
+                {arrayPage.length!==0 && <div className={styles.conteinerPagination}>
+                    <Pagination arrayPage={arrayPage} isActivPage={isActivPage} setInActivPage={setInActivPage} />
+                </div>}
+                {/* {arrayPage.length===0 && <div className={styles.conteinerPagination}>
+                   {lang === 'en' ?
+                        <h2 className={styles.titel} >There are no events for this request</h2> :
+                        <h2 className={styles.titel} >За даним запитом не має подій</h2>
+                    }
+                </div>} */}
+
             </section>
             
         </>       
@@ -43,6 +50,6 @@ AllEvent.propTypes = {
     onSort: PropTypes.func,
     onFilter:PropTypes.func,
     setInActivPage: PropTypes.func,
-    array: PropTypes.array,
+    arrayPage: PropTypes.array,
     isActivPage:PropTypes.number
 }

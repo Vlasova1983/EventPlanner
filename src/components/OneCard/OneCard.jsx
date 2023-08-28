@@ -1,9 +1,8 @@
 import { Link, useNavigate} from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
-import { getBgColor } from '../../utils/helpers/color/getBgColor';
+import { getColor } from '../../utils/helpers/color/getColor';
 import styles from './OneCard.module.css';
-
 
 const OneCard = ({ event, onDelete }) => {
     const {lang} = useLang();
@@ -28,7 +27,7 @@ const OneCard = ({ event, onDelete }) => {
                             <p className={styles.description}>{item.description}</p>
                             <div className={styles.conteinerOptions}>
                                 <p className={styles.option}>{item.category}</p>
-                                <p className={styles.priority} style={{ color: getBgColor(item.priority) }}>{item.priority}</p>
+                                <p className={styles.priority} style={{ color: getColor(item.priority) }}>{item.priority}</p>
                                 <p className={styles.option}>{item.location}</p>
                                 {lang === 'en' ?
                                     <p className={styles.option}>{item.date} at {item.time}</p> :

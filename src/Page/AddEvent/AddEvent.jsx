@@ -6,18 +6,7 @@ import styles from './AddEvent.module.css';
 
 
 const AddEvent = ({ addEvent }) => {  
-    const { lang } = useLang();
-    const event = [{
-        title: '',
-        description: '',
-        location: '',
-        category: '',
-        priority: '',
-        date: '',
-        hour: '',
-        minutes: '',
-        timeOfDay:''
-    }]
+    const { lang } = useLang();    
 
     return (
        <section className={styles.conteiner}> 
@@ -29,7 +18,7 @@ const AddEvent = ({ addEvent }) => {
                         <h2 className={styles.title}>Додати нову подію</h2> 
                     }    
                     <div className={styles.card}>
-                        <AddForm event={event} addEvent={addEvent}/>                      
+                        <AddForm  addEvent={addEvent}/>                      
                     </div>
                 </div>
             </div>

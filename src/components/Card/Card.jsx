@@ -1,25 +1,19 @@
 import { Link } from 'react-router-dom'; 
 import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
-import { getBgColor } from '../../utils/helpers/color/getBgColor';
+import { getColor } from '../../utils/helpers/color/getColor';
+import { getBackgColor } from '../../utils/helpers/backColor/getBackgColor';
 import styles from "./Card.module.css";
 
-
-
-const getBackgColor = (url) => {
-  return `linear-gradient(to top, #FFFFFF 40%, rgba(255, 255, 255, 0.8) 50%, transparent 45%),
-   url(${url}) no-repeat top center`
-}
-
 const Card = ({ item }) => { 
-  const {lang} = useLang();
- 
+  const { lang } = useLang();
+  
   return(  
     <div className={styles.card} style={{background: getBackgColor(item.url) }}>
       <div className={styles.conteiner}> 
         <div className={styles.options}>
           <p className={styles.categoria}>{item.category}</p>
-          <p className={styles.priority} style={{color: getBgColor(item.priority) }}>{item.priority}</p>
+          <p className={styles.priority} style={{color: getColor(item.priority) }}>{item.priority}</p>
         </div> 
         <div className={styles.dateConteiner}>
           {lang === 'en' ?
