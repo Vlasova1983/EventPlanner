@@ -17,7 +17,7 @@ const BackButton = ({ onBack }) => {
            onBack( getRandomID())
             navigate(-1);
         } else {
-           navigate(-1); 
+            navigate(-1);            
         }        
     }
 

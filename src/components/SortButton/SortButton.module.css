@@ -36,14 +36,14 @@
 }
 
 
-.dropdownContent button {
+ .button {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px; 
   width: 123px;
-  color:var(--color-tex);
-  stroke:var(--color-tex);
+  color:var(--color-text);
+  stroke:var(--color-text);
   background-color: var(--background-color);
   border-radius: 8px;
   font-weight: 400;
@@ -58,10 +58,10 @@
 }
 
 
-.dropdownContent button:hover,.dropdownContent button:focus {
+.dropdownContent .button:hover,.dropdownContent .button:focus {
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-  color: var(--color-text-acsen);
-  stroke: var(--color-text-acsen);
+  color: var(--color-text-acsent);
+  stroke: var(--color-text-acsent);
 }
 
  

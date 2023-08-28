@@ -38,19 +38,21 @@ const App = () => {
   }, [events,jumpBack,lang,isActivPage,filter]);
   
   const handleAdd = (data) => {
-    const { title, description, date, time, location, category, priority } = data;
     lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully added an event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно додали подію.');
+    const { title, description, date, time, location, category, priority } = data;
+    
     setEvents([{ id: getRandomID(), title, description, date, time, location, category, priority, url, url2 }, ...events]);
     setInActivPage(1);    
   };
 
   const handleEditEvent = (data, eventId) => {
+    lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully edited the event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно відредагували подію.');
     const { title, description, date, time, location, category, priority } = data;
     const newEvent = { title, description, date, time, location, category, priority, id: eventId, url: url, url2: url2 };
     const event = events.find((event) => event.id === eventId);
     const index = events.indexOf(event);
     events.splice(index, 1, newEvent);
-    lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully edited the event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно відредагували подію.');
+    // setEvents(events.splice(index, 1, newEvent))
     localStorage.setItem('events', JSON.stringify(events));
   };
  

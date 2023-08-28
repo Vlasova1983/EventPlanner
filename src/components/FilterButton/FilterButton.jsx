@@ -14,10 +14,10 @@ const FilterButton = ({onFilter}) => {
 
     return ( 
         <div className={styles.dropdown}>
-            <button className={styles.sortButton}  type="button">
+            <button className={styles.filterButton}  type="button">
                 {lang === 'en' ?
-                    <p className={styles.sortButtonText}>Category</p> :
-                    <p className={styles.sortButtonText}>Категорія</p>
+                    <p className={styles.filterButtonText}>Category</p> :
+                    <p className={styles.filterButtonText}>Категорія</p>
                 }
                 <Icon className={styles.iconButton} path={mdiFilterOutline} size={1} aria-label={'icon-filter'}/>
             </button>

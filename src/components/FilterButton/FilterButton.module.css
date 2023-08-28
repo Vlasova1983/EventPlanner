@@ -1,4 +1,4 @@
-.sortButton{
+.filterButton{
   display: flex;
   align-items: center;
   gap: 16px;
@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.sortButton:hover,.sortButton:focus{
+.filterButton:hover,.filterButton:focus{
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 }
 
@@ -72,9 +72,9 @@
 }
 
 
-.sortButton:hover,
-.dropdown:hover .sortButton .sortButton:focus,
-.dropdown:focus .sortButton {
+.filterButton:hover,
+.dropdown:hover .filterButton .filterButton:focus,
+.dropdown:focus .filterButton {
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
   color:var(--color-text-acsent);
   stroke: var(--color-text-acsent);
@@ -82,18 +82,18 @@
 
 
 
-.sortButtonText {
+.filterButtonText {
   display: none;
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
-  .sortButtonText {
+  .filterButtonText {
     display: block;
   }
 }
 
 @media (min-width: 1280px) {
-  .sortButtonText {
+  .filterButtonText {
     display: block;
   }
 }

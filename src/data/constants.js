@@ -8,6 +8,6 @@ export const timeOfDayEn = ['PM', 'AM'];
 export const timeOfDayUa = ['До обіду', 'Після обіду']; 
 export const url = "https://images.pexels.com/photos/461199/pexels-photo-461199.jpeg?dpr=2&h=480&w=640";
 export const url2 = "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2&h=480&w=640";
-export const elementOfPage = 2;
+export const elementOfPage = 15;
 
 

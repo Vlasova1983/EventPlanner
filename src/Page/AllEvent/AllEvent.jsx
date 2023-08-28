@@ -4,7 +4,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import Card from '../../components/Card/Card';
 import AddButton from "../../components/AddButton/AddButton";
 import SortButton from "../../components/SortButton/SortButton";
-import FilterButton from "../../components/FilterButton/FilterButton";
+// import FilterButton from "../../components/FilterButton/FilterButton";
 import styles from '../AllEvent/AllEvent.module.css';
 
 const AllEvent = ({ events, onSort,arrayPage, onFilter,setInActivPage,isActivPage }) => { 
@@ -14,7 +14,7 @@ const AllEvent = ({ events, onSort,arrayPage, onFilter,setInActivPage,isActivPag
             <section className={styles.conteiner}>
                 <div className={styles.conteinerTitel}>
                     <div className={styles.conteinerButton}> 
-                        <FilterButton onFilter={ onFilter} />
+                        {/* <FilterButton onFilter={ onFilter} /> */}
                         <SortButton onSort={onSort} />
                         <AddButton/>               
                     </div>
@@ -30,15 +30,7 @@ const AllEvent = ({ events, onSort,arrayPage, onFilter,setInActivPage,isActivPag
                 {arrayPage.length!==0 && <div className={styles.conteinerPagination}>
                     <Pagination arrayPage={arrayPage} isActivPage={isActivPage} setInActivPage={setInActivPage} />
                 </div>}
-                {/* {arrayPage.length===0 && <div className={styles.conteinerPagination}>
-                   {lang === 'en' ?
-                        <h2 className={styles.titel} >There are no events for this request</h2> :
-                        <h2 className={styles.titel} >За даним запитом не має подій</h2>
-                    }
-                </div>} */}
-
-            </section>
-            
+            </section>            
         </>       
     )
 };

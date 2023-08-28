@@ -1,8 +1,8 @@
 import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
 import { ReactComponent as SortIcon } from './sort.svg';
-import { ReactComponent as UpArrow } from './arrow-up-small.svg';
-import { ReactComponent as DownArrow } from './arrow-down-small.svg'
+import { ReactComponent as UpArrow } from './arrow_up.svg';
+import { ReactComponent as DownArrow } from './arrow_down.svg'
 import styles from '../SortButton/SortButton.module.css';
 
 const SortButton = ({ onSort }) => {
@@ -24,42 +24,42 @@ const SortButton = ({ onSort }) => {
                 </button>
                 {lang === 'en' ?
                     <div className={styles.dropdownContent}>
-                        <button onClick={onClickSort}  type="button" name='title' id='up'>by name
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='title' id='up'>by name
                             <UpArrow aria-label={'icon-arrow-up'}/>
                         </button>
-                        <button onClick={onClickSort}  type="button" name='title' id='down'>by name
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='title' id='down'>by name
                             <DownArrow aria-label={'icon-arrow-down'}/>
                         </button>
-                        <button onClick={onClickSort}  type="button" name='date' id='up'>by data
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='date' id='up'>by data
                             <UpArrow aria-label={'icon-arrow-up'}/>
                         </button>
-                        <button onClick={onClickSort}  type="button" name='date' id='down'>by data
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='date' id='down'>by data
                             <DownArrow aria-label={'icon-arrow-down'}/>
                         </button>
-                        <button onClick={onClickSort}  type="button" name='priority' id='up'>by priority
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='priority' id='up'>by priority
                             <UpArrow aria-label={'icon-arrow-up'}/>
                         </button>
-                        <button onClick={onClickSort}  type="button" name='priority' id='down'>by priority
+                        <button  className={styles.button} onClick={onClickSort}  type="button" name='priority' id='down'>by priority
                             <DownArrow aria-label={'icon-arrow-down'} />
                         </button>
                     </div> :
                     <div className={styles.dropdownContent}>
-                        <button onClick={onClickSort}  type="button" name='title' id='up'>за ім'ям
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='title' id='up'>за ім'ям
                             <UpArrow />
                         </button>
-                        <button onClick={onClickSort}  type="button" name='title' id='down'>за ім'ям
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='title' id='down'>за ім'ям
                             <DownArrow />
                         </button>
-                        <button onClick={onClickSort}  type="button" name='date' id='up'>за датою
+                        <button  className={styles.button} onClick={onClickSort}  type="button" name='date' id='up'>за датою
                             <UpArrow />
                         </button>
-                        <button onClick={onClickSort}  type="button" name='date' id='down'>за датою
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='date' id='down'>за датою
                             <DownArrow />
                         </button>
-                        <button onClick={onClickSort}  type="button" name='priority' id='up'>за пріорітетом
+                        <button className={styles.button} onClick={onClickSort}  type="button" name='priority' id='up'>за пріорітетом
                             <UpArrow />
                         </button>
-                        <button onClick={onClickSort}  type="button" name='priority' id='down'>за пріорітетом
+                        <button  className={styles.button} onClick={onClickSort}  type="button" name='priority' id='down'>за пріорітетом
                             <DownArrow />
                         </button>
                     </div>
