@@ -1,15 +1,14 @@
 import Icon from '@mdi/react';
 import { mdiFilterOutline } from '@mdi/js';
-import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
 import styles from '../FilterButton/FilterButton.module.css';
 
-const FilterButton = ({onFilter}) => {
+const FilterButton = () => {
     const { lang } = useLang();
     
     const onClickFilter = (evt) => {             
-        const { name } = evt.target; 
-        onFilter(name);       
+        const { name } = evt.target;
+        console.log(name);           
     }
 
     return ( 
@@ -48,6 +47,3 @@ const FilterButton = ({onFilter}) => {
 }
 export default FilterButton;
 
-FilterButton.propTypes = {     
-    onFilter:PropTypes.func
-}

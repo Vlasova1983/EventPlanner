@@ -5,8 +5,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import ChangeLanguage from '../ChangeLanguage/ChangeLanguage';
 import styles from '../Layout/Layout.module.css';
 
-const Layout = ({ children, onFilter, value }) => {
-     const {lang} = useLang();
+const Layout = ({ children }) => {   
+    const {lang} = useLang();
     return (      
         <>
            <header className={styles.layoutConteiner}>
@@ -21,7 +21,7 @@ const Layout = ({ children, onFilter, value }) => {
                     }   
                 </div>
                 <div className={styles.box2}>
-                    <SearchForm onFilter={onFilter}  value={value}/>
+                    <SearchForm />
                 </div> 
                 <div className={styles.box3}>               
                     <ChangeLanguage />                                          
@@ -35,7 +35,5 @@ const Layout = ({ children, onFilter, value }) => {
 export default Layout;
 
 Layout.propTypes = {   
-    onFilter: PropTypes.func,
-    children: PropTypes.object,
-    value:PropTypes.string
+    children: PropTypes.object,    
 }

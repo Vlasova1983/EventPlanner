@@ -1,19 +1,30 @@
 import { useState,useEffect } from 'react';
-import { PropTypes } from 'prop-types';
+import { useFilter } from '../../hooks/useFilter';
+import { useEvent } from '../../hooks/useEvent';
+import { makePaginatorArray } from '../../utils/helpers/listPagination/makePaginatorArray ';
+import { elementOfPage } from '../../data/constants';
+import { useActivePage } from '../../hooks/useActivePage';
 import { ReactComponent as IconLeft } from "./chevron left.svg";
 import { ReactComponent as IconRight } from "./chevron right.svg";
 import { ReactComponent as IconSquare } from "./square.svg";
 import styles from '../Pagination/Pagination.module.css';
     
-const Pagination = ({ setInActivPage, arrayPage, isActivPage }) => {
+const Pagination = () => {
+    const { events } = useEvent();
+    const { filter } = useFilter();
+    const { isActivPage, setInActivPage } = useActivePage();
     const [arrayPageNew, setInArrayPage] = useState(() => {    
         return JSON.parse(localStorage.getItem('paginator'))|| arrayPage ;
     });
     const [isShow, setInIsShow] = useState(true);
 
+    const filterEvents = events.filter((event) => event.title.toLowerCase().includes(filter));
+    const arrayPage = makePaginatorArray(Math.ceil(filterEvents.length / elementOfPage));    
+
     useEffect(() => {    
-        localStorage.setItem('paginator', JSON.stringify(arrayPageNew));    
-    }, [arrayPageNew]);
+        localStorage.setItem('paginator', JSON.stringify(arrayPageNew))
+        localStorage.setItem('page', JSON.stringify(isActivPage));
+    }, [arrayPageNew,isActivPage]);
   
     const hendlePageRight = () => {        
         const lastElement = arrayPageNew.slice(arrayPageNew.length - 1);
@@ -62,7 +73,10 @@ const Pagination = ({ setInActivPage, arrayPage, isActivPage }) => {
                             }`}
                         key={`#${event}`}
                         id={event}
-                        onClick={(e) => setInActivPage(Number(e.target.id))}
+                        onClick={(e) => {
+                            setInActivPage(Number(e.target.id));
+                            window.location.reload()
+                        }}
                     >{event}
                     </button>))}
                 {isShow && <div>
@@ -75,7 +89,10 @@ const Pagination = ({ setInActivPage, arrayPage, isActivPage }) => {
                         }`}
                     type='button'
                     id={arrayPageNew[arrayPageNew.length - 1]}
-                    onClick={(e) => setInActivPage(Number(e.target.id))}
+                    onClick={(e) => {
+                        setInActivPage(Number(e.target.id));
+                        window.location.reload()
+                    }}
                 >
                     {arrayPageNew[arrayPageNew.length - 1]}
                 </button>
@@ -95,10 +112,12 @@ const Pagination = ({ setInActivPage, arrayPage, isActivPage }) => {
                             }`}
                         key={`#${event}`}
                         id={event}
-                        onClick={(e) => setInActivPage(Number(e.target.id))}
+                        onClick={(e) => {
+                            setInActivPage(Number(e.target.id));
+                            window.location.reload()
+                        }}
                     >{event}
-                    </button>))}            
-                
+                    </button>))}               
                 </div>
             }
         
@@ -110,8 +129,3 @@ const Pagination = ({ setInActivPage, arrayPage, isActivPage }) => {
 }
 export default Pagination;
 
-Pagination.propTypes = {   
-    setInActivPage: PropTypes.func, 
-    arrayPage: PropTypes.array,
-    isActivPage:PropTypes.number
-}

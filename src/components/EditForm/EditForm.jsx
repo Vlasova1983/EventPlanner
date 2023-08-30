@@ -1,6 +1,6 @@
 import { useNavigate , useParams} from 'react-router-dom';
-import { useState } from 'react';
-import { PropTypes } from 'prop-types';
+import { useState,useEffect } from 'react';
+import Notiflix from 'notiflix';
 import { useFormik } from 'formik';
 import { formatDate } from '../../utils/helpers/date/';
 import { listCategoryEn } from '../../data/constants';
@@ -8,6 +8,9 @@ import { listPriorityEn } from '../../data/constants';
 import { listCategoryUa } from '../../data/constants';
 import { listPriorityUa } from '../../data/constants';
 import { useLang } from '../../hooks/useLang';
+import { useEvent } from '../../hooks/useEvent';
+import { url } from '../../data/constants';
+import { url2  } from '../../data/constants';
 import SelectList from '../SelectList/SelectList';
 import { Calendar } from '../Calendar/Calendar';
 import Time from '../Time/Time';
@@ -17,17 +20,34 @@ import { ReactComponent as IconСhoiceUp } from "./chevron-up-small.svg";
 import { ReactComponent as IconCross } from './cross-small.svg';
 import styles from './EditForm.module.css';
 
-const EditForm = ({ events, editEvent }) => {  
-  const {lang} = useLang();
-  const navigate = useNavigate();
-  const { eventId } = useParams();
-  const event = events.filter((item) => item.id.includes(eventId));
-  const item = event[0];
+const EditForm = () => {
   const [isShowDate, setIsShowDate] = useState(false);
   const [isShowTime, setIsShowTime] = useState(false);
   const [isShowListCategory, setIsShowCategory] = useState(false);
   const [isShowListPriority, setIsShowPriority] = useState(false);
   const [selectedDate, setSelectedDay] = useState(new Date());
+  const navigate = useNavigate();
+  const { lang } = useLang();
+  const { eventId } = useParams();
+  const { events} = useEvent();  
+  const event = events.filter((item) => item.id.includes(eventId));
+  const item = event[0]; 
+
+
+  useEffect(() => {    
+    localStorage.setItem('events', JSON.stringify(events));               
+  }, [events]);
+
+  
+  const editEvent = (data, eventId) => {
+    lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully edited the event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно відредагували подію.');
+    const { title, description, date, time, location, category, priority } = data;
+    const newEvent = { title, description, date, time, location, category, priority, id: eventId, url: url, url2: url2 };
+    const event = events.find((event) => event.id === eventId);
+    const index = events.indexOf(event);
+    events.splice(index, 1, newEvent);    
+    localStorage.setItem('events', JSON.stringify(events));
+  };
   
   const onChangeInput = e => {    
     const { name, value } = e.target;
@@ -96,7 +116,7 @@ const EditForm = ({ events, editEvent }) => {
   }
   
   const onSubmit = async (values) => {    
-    editEvent(values,eventId);   
+   editEvent(values,eventId);   
     navigate(-1);
   } 
   
@@ -305,7 +325,8 @@ const EditForm = ({ events, editEvent }) => {
             placeholder="input"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            value={formik.values.time}            
+            value={formik.values.time} 
+            readOnly    
           />
             :<input
             className={`${styles.input} ${
@@ -320,7 +341,8 @@ const EditForm = ({ events, editEvent }) => {
             placeholder="введіть"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            value={formik.values.time}            
+            value={formik.values.time} 
+            readOnly   
           />
             } 
             
@@ -519,13 +541,9 @@ const EditForm = ({ events, editEvent }) => {
           :<button className={styles.buttonSubmit} type="submit" disabled={!formik.isValid || !formik.dirty}>Редагувати подію</button>
           }                 
         </div>
-      </form>     
+    </form>     
   );    
 }
 
 export default EditForm;
 
-EditForm.propTypes = {
-  events: PropTypes.array,
-  editEvent:PropTypes.func
-}

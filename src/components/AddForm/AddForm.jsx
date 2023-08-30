@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { PropTypes } from 'prop-types';
+import { useState,useEffect } from 'react';
+import Notiflix from 'notiflix';
 import { useFormik } from 'formik';
 import { formatDate } from '../../utils/helpers/date/';
 import { listCategoryEn } from '../../data/constants';
@@ -8,25 +8,45 @@ import { listPriorityEn } from '../../data/constants';
 import { listCategoryUa } from '../../data/constants';
 import { listPriorityUa } from '../../data/constants';
 import { useLang } from '../../hooks/useLang';
+import { useEvent } from '../../hooks/useEvent';
+import { useActivePage } from '../../hooks/useActivePage';
 import SelectList from '../SelectList/SelectList';
 import { Calendar } from '../Calendar/Calendar';
 import Time from '../Time/Time';
 import AddFormSchema from './AddFormSchema';
+import { url } from '../../data/constants';
+import { url2  } from '../../data/constants';
 import { ReactComponent as IconСhoice } from "./chevron-down-small.svg";
 import { ReactComponent as IconСhoiceUp } from "./chevron-up-small.svg";
 import { ReactComponent as IconCross } from './cross-small.svg';
+import { getRandomID } from '../../utils/helpers/createId/getRandomID';
 import styles from './AddForm.module.css';
 
 
-const AddForm = ({ addEvent}) => {  
+const AddForm = () => {  
   const navigate = useNavigate();
-  const { lang } = useLang();  
+  const { lang } = useLang();
+  const { events, setEvents } = useEvent();
+  const {isActivPage, setInActivPage } = useActivePage();  
   const [isShowDate, setIsShowDate] = useState(false);
   const [isShowTime, setIsShowTime] = useState(false);
   const [isShowListCategory, setIsShowCategory] = useState(false);
   const [isShowListPriority, setIsShowPriority] = useState(false);
   const [selectedDate, setSelectedDay] = useState(new Date());  
   
+  useEffect(() => {    
+    localStorage.setItem('events', JSON.stringify(events));
+    localStorage.setItem('page', JSON.stringify(isActivPage));
+  }, [events,isActivPage]);
+  
+
+  const addEvent = (data) => {
+    lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully added an event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно додали подію.');
+    const { title, description, date, time, location, category, priority } = data;    
+    setEvents([{ id: getRandomID(), title, description, date, time, location, category, priority, url, url2 }, ...events]);
+    setInActivPage(1);    
+  };
+
 
   const onChangeInput = e => {    
     const { name, value } = e.target;
@@ -304,7 +324,8 @@ const AddForm = ({ addEvent}) => {
             placeholder="input"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            value={formik.values.time}            
+            value={formik.values.time} 
+            readOnly   
           />
             :<input
             className={`${styles.input} ${
@@ -319,7 +340,8 @@ const AddForm = ({ addEvent}) => {
             placeholder="введіть"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            value={formik.values.time}            
+            value={formik.values.time}
+            readOnly    
           />
             } 
             
@@ -516,9 +538,7 @@ const AddForm = ({ addEvent}) => {
           {lang === 'en'?
           <button className={styles.buttonSubmit} type="submit" disabled={!formik.isValid || !formik.dirty}>Add event</button>
           :<button className={styles.buttonSubmit} type="submit" disabled={!formik.isValid || !formik.dirty}>Додати подію</button>
-          }
-
-                 
+          }                 
         </div>
       </form>   
   ) 
@@ -526,6 +546,3 @@ const AddForm = ({ addEvent}) => {
  
 export default AddForm;
  
-AddForm.propTypes = {   
-  addEvent: PropTypes.func,  
-}

@@ -1,23 +1,21 @@
-import { useState} from 'react';
-import { PropTypes } from 'prop-types';
+import { useEffect} from 'react';
 import { useLang } from '../../hooks/useLang';
+import { useFilter } from '../../hooks/useFilter';
 import { ReactComponent as IconSearch } from './search.svg';
 import { ReactComponent as IconDelete } from './cross-small.svg';
 import styles from '../SearchForm/SearchForm.module.css';
 
-const SearchForm = ({ onFilter, value }) => {
-    const[test,setInValue]=useState(() => {
-    return JSON.parse(localStorage.getItem('filter')) || value;
-    });
+const SearchForm = () => {
     const { lang } = useLang();
+    const { filter, setInFilter } = useFilter();
+
+    useEffect(() => {    
+        localStorage.setItem('filter', JSON.stringify(filter));        
+    }, [filter]);
    
+
     return (       
-        <form className={styles.form}
-            onSubmit={() => {
-                onFilter(test);
-                         
-            }}
-        >                    
+        <form className={styles.form}>                    
             <button  type="submit" className={styles.searchButton} >                
                 <IconSearch className={styles.icon} aria-label={'icon-search'}/>
             </button>
@@ -26,29 +24,27 @@ const SearchForm = ({ onFilter, value }) => {
                     className={styles.input}
                     type="text"
                     autoComplete="off"                    
-                    value={test}
+                    value={filter}
                     placeholder="Search event title"
-                    onChange={(e) => {
-                        setInValue(e.target.value.toLowerCase())                        
-                    }}
+                    onChange={(e) => {setInFilter(e.target.value.toLowerCase())}}
                     id='search'
                 /> :
                 <input
                     className={styles.input}
                     type="text"
                     autoComplete="off"                  
-                    value={test}
+                    value={filter}
                     placeholder="Введіть назву події..."
-                    onChange={(e)=>setInValue(e.target.value.toLowerCase())}
+                    onChange={(e)=>setInFilter(e.target.value.toLowerCase())}
                     id='search'
                 />
             }
-            <button type="button" onClick={() => {
-                onFilter('');
-                setInValue('');
-                window.location.reload()
-            }
-            } className={styles.deleteButton} id='search'>                
+            <button type="button"
+                onClick={() => {
+                    setInFilter('');                   
+                    window.location.reload();
+                }}
+                className={styles.deleteButton} id='search'>                
                 <IconDelete className={styles.icon} aria-label={'icon-cross'} id='search'/>
             </button>
         </form>               
@@ -57,7 +53,3 @@ const SearchForm = ({ onFilter, value }) => {
 
 export default SearchForm;
 
-SearchForm.propTypes = {   
-    onFilter: PropTypes.func,
-    value:PropTypes.string
-}

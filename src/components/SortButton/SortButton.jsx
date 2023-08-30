@@ -1,17 +1,20 @@
-import { PropTypes } from 'prop-types';
+import { onSort } from '../../utils/actions/actions';
 import { useLang } from '../../hooks/useLang';
+import { useEvent } from '../../hooks/useEvent';
 import { ReactComponent as SortIcon } from './sort.svg';
 import { ReactComponent as UpArrow } from './arrow_up.svg';
 import { ReactComponent as DownArrow } from './arrow_down.svg'
 import styles from '../SortButton/SortButton.module.css';
 
-const SortButton = ({ onSort }) => {
+const SortButton = () => {
     const { lang } = useLang();
+    const { events } = useEvent();
 
     const onClickSort = (evt) => {       
         const { name, id } = evt.target;       
-        onSort({name, id})
+        onSort({name, id},events)
     }
+    
     return ( 
         <>               
             <div className={styles.dropdown}>
@@ -70,7 +73,4 @@ const SortButton = ({ onSort }) => {
 }
 export default SortButton;
 
-SortButton.propTypes = {     
-    onSort:PropTypes.func
-}
 

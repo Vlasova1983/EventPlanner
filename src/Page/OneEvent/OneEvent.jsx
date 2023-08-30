@@ -1,27 +1,22 @@
-import { useParams} from 'react-router-dom';
-import { PropTypes } from 'prop-types';
+import { useParams } from 'react-router-dom';
+import { useEvent } from '../../hooks/useEvent';
 import OneCard from '../../components/OneCard/OneCard';
 import BackButton from '../../components/BackButton/BackButton';
 import styles from '../OneEvent/OneEvent.module.css';
 
 
-const OneEvent= ({events, onDelete,onBack}) => {
-    const { eventId } = useParams();    
-    const event= events.filter((item)=>item.id.includes(eventId))    
+const OneEvent = () => {
+    const { events} = useEvent();
+    const { eventId } = useParams();  
 
     return (        
         <section className={styles.conteiner}>
-            <BackButton onBack={onBack} />                
+            <BackButton/>                
             <div className={styles.conteinerPage}>                
-                <OneCard event={event} onDelete={ onDelete } />                   
+                <OneCard event={events.filter((item)=>item.id.includes(eventId))}/>                   
             </div>
         </section>                
     );
 };
 
 export default OneEvent;
-OneEvent.propTypes = {       
-    event: PropTypes.object,
-    onDelete: PropTypes.func,
-    onBack:PropTypes.func
-}

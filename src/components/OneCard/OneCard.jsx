@@ -1,18 +1,21 @@
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
+import Notiflix from 'notiflix';
 import { useLang } from '../../hooks/useLang';
+import { useEvent } from '../../hooks/useEvent';
 import { getColor } from '../../utils/helpers/color/getColor';
 import styles from './OneCard.module.css';
 
-const OneCard = ({ event, onDelete }) => {
-    const {lang} = useLang();
+const OneCard = ({ event }) => {
+    const { lang } = useLang();
+    const { events, setEvents } = useEvent(); 
     const navigate = useNavigate();  
     const item = event[0];
-    
-    const onClickDelete = () => {       
-        navigate(-1); 
-        onDelete(item.id);                     
-    };
+
+    useEffect(() => {    
+        localStorage.setItem('events', JSON.stringify(events));               
+    }, [events]);
     
     return (
         <>
@@ -43,8 +46,20 @@ const OneCard = ({ event, onDelete }) => {
                                 }
                             </Link>
                             {lang === 'en' ?
-                                <button className={styles.deleteButton}  type="button" onClick={onClickDelete}>Delete event</button> :
-                                <button className={styles.deleteButton}   type="button" onClick={onClickDelete}>Видалити подію</button>
+                                <button className={styles.deleteButton} type="button"
+                                    onClick={() => {
+                                        lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully deleted the event') : Notiflix.Notify.failure('Вітаємо!Ви успішно видалили подію.');
+                                        setEvents(events.filter((event) => event.id !== item.id))
+                                        navigate(-1);
+                                     }}
+                                >Delete event</button> :
+                                <button className={styles.deleteButton} type="button"
+                                    onClick={() => {
+                                        lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully deleted the event') : Notiflix.Notify.failure('Вітаємо!Ви успішно видалили подію.');
+                                        setEvents(events.filter((event) => event.id !== item.id))
+                                        navigate(-1);
+                                     }}
+                                >Видалити подію</button>
                             }
                         </div>
                     </div>
@@ -56,6 +71,5 @@ const OneCard = ({ event, onDelete }) => {
 export default OneCard;
 
 OneCard.propTypes = {       
-    event: PropTypes.array,
-    onDelete: PropTypes.func
+    event: PropTypes.array,   
 }

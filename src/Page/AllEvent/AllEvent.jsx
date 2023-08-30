@@ -1,21 +1,42 @@
-import { PropTypes } from 'prop-types';
 import { useLang } from '../../hooks/useLang';
-import Pagination from '../../components/Pagination/Pagination';
-import Card from '../../components/Card/Card';
+import { useFilter } from '../../hooks/useFilter';
+import { useEvent } from '../../hooks/useEvent';
+import { useActivePage } from '../../hooks/useActivePage';
+import { makePaginatorArray } from '../../utils/helpers/listPagination/makePaginatorArray ';
+import { elementOfPage } from '../../data/constants';
 import AddButton from "../../components/AddButton/AddButton";
 import SortButton from "../../components/SortButton/SortButton";
+import Pagination from '../../components/Pagination/Pagination';
+import Card from '../../components/Card/Card';
 // import FilterButton from "../../components/FilterButton/FilterButton";
-import styles from '../AllEvent/AllEvent.module.css';
+import styles from './AllEvent.module.css';
 
-const AllEvent = ({ events, onSort,arrayPage, onFilter,setInActivPage,isActivPage }) => { 
-     const {lang} = useLang();
+const AllEvent = () => {    
+    const { lang } = useLang();
+    const { events } = useEvent();
+    const { filter } = useFilter();
+    const { isActivPage} = useActivePage();
+    const filterEvents = events.filter((event) => event.title.toLowerCase().includes(filter));
+    const arrayPage = makePaginatorArray(Math.ceil(filterEvents.length / elementOfPage));     
+
+    const eventsOfPage = () => {    
+        const array = [];    
+        for (let i = 0; i < filterEvents.length; i++) {
+        if (i >= elementOfPage * (isActivPage - 1) && i < elementOfPage * isActivPage) {
+            array.push(filterEvents[i])
+        }
+        };
+        localStorage.setItem('paginator', JSON.stringify(arrayPage))
+        return array
+    };
+   
     return (
         <>
             <section className={styles.conteiner}>
                 <div className={styles.conteinerTitel}>
                     <div className={styles.conteinerButton}> 
-                        {/* <FilterButton onFilter={ onFilter} /> */}
-                        <SortButton onSort={onSort} />
+                        {/* <FilterButton /> */}
+                        <SortButton  />
                         <AddButton/>               
                     </div>
                     {lang === 'en' ?
@@ -24,11 +45,11 @@ const AllEvent = ({ events, onSort,arrayPage, onFilter,setInActivPage,isActivPag
                     }
                 </div>                        
                 <div className={styles.wrapper}>
-                    {events.map (event=>(
+                    {eventsOfPage().map (event=>(
                     <Card item={event}   key={event.id}/>))}   
                 </div>
                 {arrayPage.length!==0 && <div className={styles.conteinerPagination}>
-                    <Pagination arrayPage={arrayPage} isActivPage={isActivPage} setInActivPage={setInActivPage} />
+                    <Pagination arrayPage={arrayPage}  />
                 </div>}
             </section>            
         </>       
@@ -37,11 +58,3 @@ const AllEvent = ({ events, onSort,arrayPage, onFilter,setInActivPage,isActivPag
 
 export default AllEvent;
 
-AllEvent.propTypes = {    
-    events: PropTypes.arrayOf(PropTypes.shape()), 
-    onSort: PropTypes.func,
-    onFilter:PropTypes.func,
-    setInActivPage: PropTypes.func,
-    arrayPage: PropTypes.array,
-    isActivPage:PropTypes.number
-}
