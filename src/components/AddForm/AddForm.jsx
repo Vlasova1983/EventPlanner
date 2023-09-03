@@ -1,33 +1,37 @@
+import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import Notiflix from 'notiflix';
 import { useFormik } from 'formik';
+import { setInActivePage } from '../../redux/events/events.slice';
+import { setInEvents } from '../../redux/events/events.slice';
 import { formatDate } from '../../utils/helpers/date/';
+import { getRandomID } from '../../utils/helpers/createId/getRandomID';
 import { listCategoryEn } from '../../data/constants';
 import { listPriorityEn } from '../../data/constants';
 import { listCategoryUa } from '../../data/constants';
 import { listPriorityUa } from '../../data/constants';
 import { useLang } from '../../hooks/useLang';
-import { useEvent } from '../../hooks/useEvent';
-import { useActivePage } from '../../hooks/useActivePage';
+import { url } from '../../data/constants';
+import { url2 } from '../../data/constants';
+
 import SelectList from '../SelectList/SelectList';
 import { Calendar } from '../Calendar/Calendar';
 import Time from '../Time/Time';
+
 import AddFormSchema from './AddFormSchema';
-import { url } from '../../data/constants';
-import { url2  } from '../../data/constants';
 import { ReactComponent as IconСhoice } from "./chevron-down-small.svg";
 import { ReactComponent as IconСhoiceUp } from "./chevron-up-small.svg";
 import { ReactComponent as IconCross } from './cross-small.svg';
-import { getRandomID } from '../../utils/helpers/createId/getRandomID';
 import styles from './AddForm.module.css';
-
 
 const AddForm = () => {  
   const navigate = useNavigate();
   const { lang } = useLang();
-  const { events, setEvents } = useEvent();
-  const {isActivPage, setInActivPage } = useActivePage();  
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.events.data);
+  const isActivPage = useSelector(state => state.events.isActivPage); 
+  
   const [isShowDate, setIsShowDate] = useState(false);
   const [isShowTime, setIsShowTime] = useState(false);
   const [isShowListCategory, setIsShowCategory] = useState(false);
@@ -35,18 +39,17 @@ const AddForm = () => {
   const [selectedDate, setSelectedDay] = useState(new Date());  
   
   useEffect(() => {    
-    localStorage.setItem('events', JSON.stringify(events));
+    localStorage.setItem('events', JSON.stringify(data));
     localStorage.setItem('page', JSON.stringify(isActivPage));
-  }, [events,isActivPage]);
+  }, [data,isActivPage]);
   
 
   const addEvent = (data) => {
     lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully added an event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно додали подію.');
-    const { title, description, date, time, location, category, priority } = data;    
-    setEvents([{ id: getRandomID(), title, description, date, time, location, category, priority, url, url2 }, ...events]);
-    setInActivPage(1);    
+    const { title, description, date, time, location, category, priority } = data;  
+    dispatch(setInEvents({ id: getRandomID(), title, description, date, time, location, category, priority, url, url2 })); 
+    dispatch(setInActivePage(1));       
   };
-
 
   const onChangeInput = e => {    
     const { name, value } = e.target;

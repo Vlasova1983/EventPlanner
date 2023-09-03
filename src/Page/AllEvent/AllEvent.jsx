@@ -1,7 +1,5 @@
+import { useSelector } from 'react-redux';
 import { useLang } from '../../hooks/useLang';
-import { useFilter } from '../../hooks/useFilter';
-import { useEvent } from '../../hooks/useEvent';
-import { useActivePage } from '../../hooks/useActivePage';
 import { makePaginatorArray } from '../../utils/helpers/listPagination/makePaginatorArray ';
 import { elementOfPage } from '../../data/constants';
 import AddButton from "../../components/AddButton/AddButton";
@@ -13,10 +11,15 @@ import styles from './AllEvent.module.css';
 
 const AllEvent = () => {    
     const { lang } = useLang();
-    const { events } = useEvent();
-    const { filter } = useFilter();
-    const { isActivPage} = useActivePage();
-    const filterEvents = events.filter((event) => event.title.toLowerCase().includes(filter));
+    const filter = useSelector(state => state.events.filter);
+    const data = useSelector(state => state.events.data);
+    const isActivPage = useSelector(state => state.events.isActivPage); 
+    
+    const  getFilterEvents =()=> {    
+        return  data.filter(( event)=> event.title.toLowerCase().includes(filter));
+    };   
+    const filterEvents = getFilterEvents();
+   
     const arrayPage = makePaginatorArray(Math.ceil(filterEvents.length / elementOfPage));     
 
     const eventsOfPage = () => {    
@@ -29,7 +32,7 @@ const AllEvent = () => {
         localStorage.setItem('paginator', JSON.stringify(arrayPage))
         return array
     };
-   
+
     return (
         <>
             <section className={styles.conteiner}>

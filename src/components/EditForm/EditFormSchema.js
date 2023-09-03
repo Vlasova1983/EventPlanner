@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 
-const AddFormSchema = Yup.object().shape({
+const EditFormSchema = Yup.object().shape({
   title: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')    
@@ -24,5 +24,5 @@ const AddFormSchema = Yup.object().shape({
     .required('invalid input'), 
 });
 
-export default AddFormSchema;
+export default EditFormSchema;
 

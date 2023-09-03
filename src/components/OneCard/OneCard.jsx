@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import Notiflix from 'notiflix';
 import { useLang } from '../../hooks/useLang';
@@ -12,10 +11,6 @@ const OneCard = ({ event }) => {
     const { events, setEvents } = useEvent(); 
     const navigate = useNavigate();  
     const item = event[0];
-
-    useEffect(() => {    
-        localStorage.setItem('events', JSON.stringify(events));               
-    }, [events]);
     
     return (
         <>

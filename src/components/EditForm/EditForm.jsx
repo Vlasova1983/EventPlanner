@@ -1,20 +1,21 @@
-import { useNavigate , useParams} from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState} from 'react';
 import Notiflix from 'notiflix';
 import { useFormik } from 'formik';
+import { upDataEvents } from '../../redux/events/events.slice';
 import { formatDate } from '../../utils/helpers/date/';
 import { listCategoryEn } from '../../data/constants';
 import { listPriorityEn } from '../../data/constants';
 import { listCategoryUa } from '../../data/constants';
 import { listPriorityUa } from '../../data/constants';
 import { useLang } from '../../hooks/useLang';
-import { useEvent } from '../../hooks/useEvent';
 import { url } from '../../data/constants';
 import { url2  } from '../../data/constants';
 import SelectList from '../SelectList/SelectList';
 import { Calendar } from '../Calendar/Calendar';
 import Time from '../Time/Time';
-import AddFormSchema from './AddFormSchema';
+import EditFormSchema from './EditFormSchema';
 import { ReactComponent as IconСhoice } from "./chevron-down-small.svg";
 import { ReactComponent as IconСhoiceUp } from "./chevron-up-small.svg";
 import { ReactComponent as IconCross } from './cross-small.svg';
@@ -28,28 +29,29 @@ const EditForm = () => {
   const [selectedDate, setSelectedDay] = useState(new Date());
   const navigate = useNavigate();
   const { lang } = useLang();
+  const dispatch = useDispatch();
   const { eventId } = useParams();
-  const { events} = useEvent();  
-  const event = events.filter((item) => item.id.includes(eventId));
-  const item = event[0]; 
-
-
-  useEffect(() => {    
-    localStorage.setItem('events', JSON.stringify(events));               
-  }, [events]);
-
+  const data = useSelector(state => state.events.data); 
+  const event = data.filter((item) => item.id.includes(eventId));
+  const item = event[0];
   
-  const editEvent = (data, eventId) => {
+  
+  
+  const editEvent = (value, eventId) => {
     lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully edited the event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно відредагували подію.');
-    const { title, description, date, time, location, category, priority } = data;
-    const newEvent = { title, description, date, time, location, category, priority, id: eventId, url: url, url2: url2 };
-    const event = events.find((event) => event.id === eventId);
+    const events = [...data];
+    const event = events.find((event) => event.id === eventId); 
     const index = events.indexOf(event);
+    const { title, description, date, time, location, category, priority } = value;   
+    const newEvent = { title, description, date, time, location, category, priority, id: eventId, url: url, url2: url2 };
     events.splice(index, 1, newEvent);    
-    localStorage.setItem('events', JSON.stringify(events));
+    dispatch(upDataEvents(events));  
+    localStorage.setItem('events', JSON.stringify(events));    
   };
+
+  console.log('render')
   
-  const onChangeInput = e => {    
+  const onChangeInput = (e) => {    
     const { name, value } = e.target;
     formik.setFieldValue(name, value);    
   }
@@ -116,7 +118,7 @@ const EditForm = () => {
   }
   
   const onSubmit = async (values) => {    
-   editEvent(values,eventId);   
+    editEvent(values, eventId);  
     navigate(-1);
   } 
   
@@ -130,7 +132,7 @@ const EditForm = () => {
       date: item.date,     
       time:item.time
     },
-    validationSchema:AddFormSchema,
+    validationSchema:EditFormSchema,
     onSubmit,
   })
   
