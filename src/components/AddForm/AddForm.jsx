@@ -14,11 +14,9 @@ import { listPriorityUa } from '../../data/constants';
 import { useLang } from '../../hooks/useLang';
 import { url } from '../../data/constants';
 import { url2 } from '../../data/constants';
-
 import SelectList from '../SelectList/SelectList';
 import { Calendar } from '../Calendar/Calendar';
 import Time from '../Time/Time';
-
 import AddFormSchema from './AddFormSchema';
 import { ReactComponent as IconСhoice } from "./chevron-down-small.svg";
 import { ReactComponent as IconСhoiceUp } from "./chevron-up-small.svg";

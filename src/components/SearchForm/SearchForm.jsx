@@ -1,13 +1,15 @@
 import { useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setInFilter } from '../../redux/events/events.slice';
 import { useLang } from '../../hooks/useLang';
-import { useFilter } from '../../hooks/useFilter';
 import { ReactComponent as IconSearch } from './search.svg';
 import { ReactComponent as IconDelete } from './cross-small.svg';
 import styles from '../SearchForm/SearchForm.module.css';
 
 const SearchForm = () => {
+    const dispatch = useDispatch();
     const { lang } = useLang();
-    const { filter, setInFilter } = useFilter();
+    const filter=useSelector(state => state.events.filter);    
 
     useEffect(() => {    
         localStorage.setItem('filter', JSON.stringify(filter));        
@@ -26,7 +28,7 @@ const SearchForm = () => {
                     autoComplete="off"                    
                     value={filter}
                     placeholder="Search event title"
-                    onChange={(e) => {setInFilter(e.target.value.toLowerCase())}}
+                    onChange={(e) => dispatch(setInFilter(e.target.value.toLowerCase()))}
                     id='search'
                 /> :
                 <input
@@ -35,14 +37,13 @@ const SearchForm = () => {
                     autoComplete="off"                  
                     value={filter}
                     placeholder="Введіть назву події..."
-                    onChange={(e)=>setInFilter(e.target.value.toLowerCase())}
+                    onChange={(e)=>dispatch(setInFilter(e.target.value.toLowerCase()))}
                     id='search'
                 />
             }
             <button type="button"
                 onClick={() => {
-                    setInFilter('');                   
-                    window.location.reload();
+                    dispatch(setInFilter(''));                   
                 }}
                 className={styles.deleteButton} id='search'>                
                 <IconDelete className={styles.icon} aria-label={'icon-cross'} id='search'/>

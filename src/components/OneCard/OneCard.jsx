@@ -1,16 +1,23 @@
 import { Link, useNavigate } from 'react-router-dom';
+import {useDispatch , useSelector} from 'react-redux';
+import {useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import Notiflix from 'notiflix';
+import { deleteEvent } from '../../redux/events/events.slice';
 import { useLang } from '../../hooks/useLang';
-import { useEvent } from '../../hooks/useEvent';
 import { getColor } from '../../utils/helpers/color/getColor';
 import styles from './OneCard.module.css';
 
 const OneCard = ({ event }) => {
     const { lang } = useLang();
-    const { events, setEvents } = useEvent(); 
+    const data = useSelector(state => state.events.data);
+    const dispatch = useDispatch();   
     const navigate = useNavigate();  
     const item = event[0];
+
+    useEffect(() => {    
+        localStorage.setItem('events', JSON.stringify(data));        
+      }, [data]);
     
     return (
         <>
@@ -44,14 +51,14 @@ const OneCard = ({ event }) => {
                                 <button className={styles.deleteButton} type="button"
                                     onClick={() => {
                                         lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully deleted the event') : Notiflix.Notify.failure('Вітаємо!Ви успішно видалили подію.');
-                                        setEvents(events.filter((event) => event.id !== item.id))
+                                        dispatch(deleteEvent( item.id));
                                         navigate(-1);
                                      }}
                                 >Delete event</button> :
                                 <button className={styles.deleteButton} type="button"
                                     onClick={() => {
                                         lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully deleted the event') : Notiflix.Notify.failure('Вітаємо!Ви успішно видалили подію.');
-                                        setEvents(events.filter((event) => event.id !== item.id))
+                                        dispatch(deleteEvent( item.id));
                                         navigate(-1);
                                      }}
                                 >Видалити подію</button>

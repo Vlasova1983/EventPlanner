@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
 import { onSort } from '../../utils/actions/actions';
 import { useLang } from '../../hooks/useLang';
-import { useEvent } from '../../hooks/useEvent';
 import { ReactComponent as SortIcon } from './sort.svg';
 import { ReactComponent as UpArrow } from './arrow_up.svg';
 import { ReactComponent as DownArrow } from './arrow_down.svg'
@@ -8,11 +8,11 @@ import styles from '../SortButton/SortButton.module.css';
 
 const SortButton = () => {
     const { lang } = useLang();
-    const { events } = useEvent();
+    const data = useSelector(state => state.events.data);   
 
     const onClickSort = (evt) => {       
         const { name, id } = evt.target;       
-        onSort({name, id},events)
+        onSort({name, id},data)
     }
     
     return ( 

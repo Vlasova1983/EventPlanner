@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { useLang } from '../../hooks/useLang';
 import { makePaginatorArray } from '../../utils/helpers/listPagination/makePaginatorArray ';
+import { useLang } from '../../hooks/useLang';
 import { elementOfPage } from '../../data/constants';
 import AddButton from "../../components/AddButton/AddButton";
 import SortButton from "../../components/SortButton/SortButton";
@@ -10,17 +10,13 @@ import Card from '../../components/Card/Card';
 import styles from './AllEvent.module.css';
 
 const AllEvent = () => {    
-    const { lang } = useLang();
-    const filter = useSelector(state => state.events.filter);
-    const data = useSelector(state => state.events.data);
-    const isActivPage = useSelector(state => state.events.isActivPage); 
+    const { lang } = useLang(); 
+    const isActivPage = useSelector(state => state.events.isActivPage);
+    const filter=useSelector(state => state.events.filter);
+    const data = useSelector(state => state.events.data);     
     
-    const  getFilterEvents =()=> {    
-        return  data.filter(( event)=> event.title.toLowerCase().includes(filter));
-    };   
-    const filterEvents = getFilterEvents();
-   
-    const arrayPage = makePaginatorArray(Math.ceil(filterEvents.length / elementOfPage));     
+    const filterEvents = data.filter((event) => event.title.toLowerCase().includes(filter));
+    const arrayPage = makePaginatorArray(Math.ceil(filterEvents.length / elementOfPage));
 
     const eventsOfPage = () => {    
         const array = [];    
@@ -29,7 +25,7 @@ const AllEvent = () => {
             array.push(filterEvents[i])
         }
         };
-        localStorage.setItem('paginator', JSON.stringify(arrayPage))
+        localStorage.setItem('paginator', JSON.stringify(arrayPage));
         return array
     };
 
@@ -52,7 +48,7 @@ const AllEvent = () => {
                     <Card item={event}   key={event.id}/>))}   
                 </div>
                 {arrayPage.length!==0 && <div className={styles.conteinerPagination}>
-                    <Pagination arrayPage={arrayPage}  />
+                    <Pagination />
                 </div>}
             </section>            
         </>       

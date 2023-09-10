@@ -14,7 +14,7 @@ const eventsSlice = createSlice({
       state.data = [payload];    
     },
     deleteEvent: (state, { payload }) => {     
-      state.events = state.events.filter(event => event.id !== payload);
+      state.data = state.data.filter(event => event.id !== payload);
     },
     setInFilter: (state, { payload }) => {      
       state.filter = payload;

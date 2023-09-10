@@ -5,3 +5,4 @@ export const makePaginatorArray  = (data)=>{
   }
   return array
 }
+
