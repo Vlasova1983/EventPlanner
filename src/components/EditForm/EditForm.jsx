@@ -1,6 +1,6 @@
 import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import Notiflix from 'notiflix';
 import { useFormik } from 'formik';
 import { upDataEvents } from '../../redux/events/events.slice';
@@ -31,25 +31,25 @@ const EditForm = () => {
   const { lang } = useLang();
   const dispatch = useDispatch();
   const { eventId } = useParams();
-  const data = useSelector(state => state.events.data); 
+  const data = useSelector(state => state.events.data);  
   const event = data.filter((item) => item.id.includes(eventId));
-  const item = event[0];
-  
-  
-  
-  const editEvent = (value, eventId) => {
+  const item = event[0]; 
+ 
+
+  useEffect(() => {    
+    localStorage.setItem('events', JSON.stringify(data));    
+  }, [data]);
+ 
+  const editEvent = (value, eventId) => {    
     lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully edited the event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно відредагували подію.');
     const events = [...data];
     const event = events.find((event) => event.id === eventId); 
     const index = events.indexOf(event);
     const { title, description, date, time, location, category, priority } = value;   
     const newEvent = { title, description, date, time, location, category, priority, id: eventId, url: url, url2: url2 };
-    events.splice(index, 1, newEvent);    
-    dispatch(upDataEvents(events));  
-    localStorage.setItem('events', JSON.stringify(events));    
-  };
-
-  console.log('render')
+    events.splice(index, 1, newEvent);   
+    return events;     
+  }; 
   
   const onChangeInput = (e) => {    
     const { name, value } = e.target;
@@ -117,8 +117,8 @@ const EditForm = () => {
     }    
   }
   
-  const onSubmit = async (values) => {    
-    editEvent(values, eventId);  
+  const onSubmit = async (values) => {   
+    dispatch(upDataEvents(editEvent(values, eventId)));  
     navigate(-1);
   } 
   

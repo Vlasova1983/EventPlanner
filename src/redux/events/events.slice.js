@@ -9,9 +9,9 @@ const eventsSlice = createSlice({
     reducers: {
     setInEvents: (state, { payload }) => {     
       state.data = [payload,...state.data];    
-      },
-    upDataEvents: (state, { payload }) => {     
-      state.data = [payload];    
+    },
+      upDataEvents: (state, { payload }) => {     
+      state.data = [...payload];    
     },
     deleteEvent: (state, { payload }) => {     
       state.data = state.data.filter(event => event.id !== payload);
@@ -22,10 +22,13 @@ const eventsSlice = createSlice({
     setInActivePage: (state, { payload }) => {      
       state.isActivPage = payload;
     },
+    setInArrayPage:(state, { payload }) => {      
+      state.arrayPage = payload;
+    },
   },
 });
 
-export const { setInEvents, deleteEvent,setInFilter,setInActivePage,upDataEvents} = eventsSlice.actions;
+export const { setInEvents, deleteEvent,setInFilter,setInActivePage,upDataEvents,setInArrayPage} = eventsSlice.actions;
 
 const persistConfig = {
   key: 'events',

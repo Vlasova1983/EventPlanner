@@ -1,4 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { upDataEvents } from '../../redux/events/events.slice';
 import { onSort } from '../../utils/actions/actions';
 import { useLang } from '../../hooks/useLang';
 import { ReactComponent as SortIcon } from './sort.svg';
@@ -8,11 +10,16 @@ import styles from '../SortButton/SortButton.module.css';
 
 const SortButton = () => {
     const { lang } = useLang();
-    const data = useSelector(state => state.events.data);   
+    const data = useSelector(state => state.events.data); 
+    const dispatch = useDispatch();
+
+    useEffect(() => {    
+    localStorage.setItem('events', JSON.stringify(data));    
+  }, [data]);
 
     const onClickSort = (evt) => {       
         const { name, id } = evt.target;       
-        onSort({name, id},data)
+        dispatch(upDataEvents(onSort({ name, id }, ...data))); 
     }
     
     return ( 

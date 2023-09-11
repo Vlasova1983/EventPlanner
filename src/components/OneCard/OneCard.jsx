@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import {useDispatch , useSelector} from 'react-redux';
-import {useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Notiflix from 'notiflix';
 import { deleteEvent } from '../../redux/events/events.slice';
@@ -10,14 +9,9 @@ import styles from './OneCard.module.css';
 
 const OneCard = ({ event }) => {
     const { lang } = useLang();
-    const data = useSelector(state => state.events.data);
     const dispatch = useDispatch();   
     const navigate = useNavigate();  
-    const item = event[0];
-
-    useEffect(() => {    
-        localStorage.setItem('events', JSON.stringify(data));        
-      }, [data]);
+    const item = event[0];  
     
     return (
         <>

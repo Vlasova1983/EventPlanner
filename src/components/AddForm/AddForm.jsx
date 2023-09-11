@@ -42,9 +42,9 @@ const AddForm = () => {
   }, [data,isActivPage]);
   
 
-  const addEvent = (data) => {
+  const addEvent = (values) => {
     lang === 'en' ? Notiflix.Notify.success('Congratulations! You have successfully added an event.') : Notiflix.Notify.failure('Вітаємо!Ви успішно додали подію.');
-    const { title, description, date, time, location, category, priority } = data;  
+    const { title, description, date, time, location, category, priority } = values;  
     dispatch(setInEvents({ id: getRandomID(), title, description, date, time, location, category, priority, url, url2 })); 
     dispatch(setInActivePage(1));       
   };

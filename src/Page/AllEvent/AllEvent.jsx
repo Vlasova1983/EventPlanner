@@ -1,4 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setInArrayPage } from '../../redux/events/events.slice';
 import { makePaginatorArray } from '../../utils/helpers/listPagination/makePaginatorArray ';
 import { useLang } from '../../hooks/useLang';
 import { elementOfPage } from '../../data/constants';
@@ -11,21 +13,25 @@ import styles from './AllEvent.module.css';
 
 const AllEvent = () => {    
     const { lang } = useLang(); 
+    const dispatch = useDispatch();
     const isActivPage = useSelector(state => state.events.isActivPage);
     const filter=useSelector(state => state.events.filter);
-    const data = useSelector(state => state.events.data);     
-    
+    const data = useSelector(state => state.events.data);   
     const filterEvents = data.filter((event) => event.title.toLowerCase().includes(filter));
     const arrayPage = makePaginatorArray(Math.ceil(filterEvents.length / elementOfPage));
 
+    useEffect(() => {        
+        localStorage.setItem('paginator', JSON.stringify(arrayPage));        
+        dispatch(setInArrayPage(arrayPage));
+    }, [arrayPage,dispatch]);
+    
     const eventsOfPage = () => {    
         const array = [];    
         for (let i = 0; i < filterEvents.length; i++) {
         if (i >= elementOfPage * (isActivPage - 1) && i < elementOfPage * isActivPage) {
             array.push(filterEvents[i])
         }
-        };
-        localStorage.setItem('paginator', JSON.stringify(arrayPage));
+        };       
         return array
     };
 
@@ -48,7 +54,7 @@ const AllEvent = () => {
                     <Card item={event}   key={event.id}/>))}   
                 </div>
                 {arrayPage.length!==0 && <div className={styles.conteinerPagination}>
-                    <Pagination />
+                    <Pagination/>
                 </div>}
             </section>            
         </>       

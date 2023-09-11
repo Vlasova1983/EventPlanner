@@ -1,9 +1,7 @@
 import { useState,useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import {usePaginator} from '../../hooks/usePaginator';
 import { setInActivePage } from '../../redux/events/events.slice';
-// import { makePaginatorArray } from '../../utils/helpers/listPagination/makePaginatorArray ';
-// import { elementOfPage } from '../../data/constants';
+import { setInArrayPage } from '../../redux/events/events.slice';
 import { ReactComponent as IconLeft } from "./chevron left.svg";
 import { ReactComponent as IconRight } from "./chevron right.svg";
 import { ReactComponent as IconSquare } from "./square.svg";
@@ -13,21 +11,12 @@ const Pagination = () => {
     const dispatch = useDispatch();
     const [isShow, setInIsShow] = useState(true);    
     const isActivPage = useSelector(state => state.events.isActivPage); 
-    const filter=useSelector(state => state.events.filter);
-    const data = useSelector(state => state.events.data);
-    const {arrayPage}=usePaginator();
-    console.log(arrayPage)
-    const [arrayPageNew, setInArrayPage] = useState(() => {    
-        return JSON.parse(localStorage.getItem('paginator'))|| arrayPage ;
-    });
+    const arrayPage = useSelector(state => state.events.arrayPage);        
 
-    const filterEvents = data.filter((event) => event.title.toLowerCase().includes(filter));
-    // const arrayPage = makePaginatorArray(Math.ceil(filterEvents.length / elementOfPage));         
-
-    useEffect(() => {    
-        localStorage.setItem('paginator', JSON.stringify(arrayPage))
+    useEffect(() => {      
         localStorage.setItem('page', JSON.stringify(isActivPage));
-    }, [arrayPage,isActivPage]);
+        localStorage.setItem('paginator', JSON.stringify(arrayPage))
+    }, [isActivPage,arrayPage]);
   
     const hendlePageRight = () => {        
         const lastElement = arrayPage.slice(arrayPage.length - 1);
@@ -35,13 +24,13 @@ const Pagination = () => {
         const noFirstElement = arrayPage.slice(1);
         const noLastElement=noFirstElement.slice(0, noFirstElement.length - 1)
         if (arrayPage[2]=== lastElement[0]-2) {
-            setInIsShow(false);
+            dispatch(setInIsShow(false));
         }
         const newArray = [...noLastElement, ...firstElement, ...lastElement];
         
 
         if (firstElement[0]!==lastElement[0]-3) {
-            setInArrayPage(newArray);           
+           dispatch(setInArrayPage(newArray)) ;           
         }              
     }
 
@@ -50,8 +39,7 @@ const Pagination = () => {
         const lastElement = arrayPage.slice(arrayPage.length - 1);        
         const noLastElement = arrayPage.slice(0, arrayPage.length - 1);
         const penultimateElement = noLastElement.slice(noLastElement.length - 1);
-        const noLastTwoElement = noLastElement.slice(0, noLastElement.length - 1);
-        
+        const noLastTwoElement = noLastElement.slice(0, noLastElement.length - 1);        
         const newArray = [...penultimateElement, ...noLastTwoElement, ...lastElement];
         if (penultimateElement[0]!==lastElement[0]-1) {
             setInArrayPage(newArray)
@@ -68,7 +56,7 @@ const Pagination = () => {
                 {!isShow && <div>
                     <IconSquare />
                 </div>}
-                {arrayPageNew.slice(0, 3).map(event => (
+                {arrayPage.slice(0, 3).map(event => (
                     <button type='button'
                         className={`${styles.button} ${isActivPage === event
                             ? styles.activButton
@@ -118,12 +106,8 @@ const Pagination = () => {
                     >{event}
                     </button>))}               
                 </div>
-            }
-        
-        
-        </>
-
-                      
+            }        
+        </>                     
     )
 }
 export default Pagination;
