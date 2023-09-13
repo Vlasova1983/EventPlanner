@@ -42,7 +42,7 @@ const AllEvent = () => {
                     <div className={styles.conteinerButton}> 
                         {/* <FilterButton /> */}
                         <SortButton  />
-                        <AddButton/>               
+                        <AddButton />                        
                     </div>
                     {lang === 'en' ?
                         <h2 className={styles.titel} >My events</h2> :
@@ -55,7 +55,7 @@ const AllEvent = () => {
                 </div>
                 {arrayPage.length!==0 && <div className={styles.conteinerPagination}>
                     <Pagination/>
-                </div>}
+                </div>}                
             </section>            
         </>       
     )

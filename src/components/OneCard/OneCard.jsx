@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Notiflix from 'notiflix';
 import { deleteEvent } from '../../redux/events/events.slice';
+import Video from '../../components/Video/Video';
 import { useLang } from '../../hooks/useLang';
 import { getColor } from '../../utils/helpers/color/getColor';
 import styles from './OneCard.module.css';
@@ -57,6 +58,7 @@ const OneCard = ({ event }) => {
                                      }}
                                 >Видалити подію</button>
                             }
+                            <Video/>
                         </div>
                     </div>
                 </div >
